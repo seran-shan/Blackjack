@@ -37,8 +37,7 @@ public class Card {
     }
 
     public String toString() {
-        String out = String.valueOf(getSuit()) + String.valueOf(getFace());
-        return out;
+        return String.format("%s%s", getSuit(), getFace());
     }
 
     public static void main(String[] args) {
