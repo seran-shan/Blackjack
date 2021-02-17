@@ -42,7 +42,8 @@ public class CardDeck {
 		
 		for (char suit : suits) {
 			for (int i = 1; i <= CARDS_PER_TYPE; i++) {
-				cards.add(new Card(suit, i));
+				Card card = new Card(suit, i);
+				cards.add(card);
 			}
  		}
 	}
