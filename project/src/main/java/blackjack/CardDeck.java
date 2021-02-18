@@ -46,10 +46,6 @@ public class CardDeck {
  		}
 		checkFullDeck();
 	}
-
-	public void drawCard() {
-
-	}
 	
 	/**
 	 * Sjekker om kortstokken inneholder 52 kort.
