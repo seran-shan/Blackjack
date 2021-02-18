@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class CardDeck {
-	private ArrayList<Card> cards = new ArrayList<>();
+	private ArrayList<Card> cards;
 	private final int NUM_OF_CARDS = 52; //For å kontrollere at kortstokken inneholder 52 kort.
 	
 	/**
 	 * Opprettes en hel kortstokk når et instans av klassen CardDeck opprettes.
 	 */
 	public CardDeck() {
-		createFullDeck();
+		cards = new ArrayList<>();
 	}
 	
 	/**
@@ -46,6 +46,7 @@ public class CardDeck {
  		}
 		checkFullDeck();
 	}
+
 	
 	/**
 	 * Sjekker om kortstokken inneholder 52 kort.
