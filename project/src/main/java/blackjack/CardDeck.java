@@ -43,11 +43,6 @@ public class CardDeck {
 		checkFullDeck();
 	}
 	
-	
-	public void giveFaceValue() {
-	
-	}
-	
 	/**
 	 * Sjekker om kortstokken inneholder 52 kort.
 	 */
