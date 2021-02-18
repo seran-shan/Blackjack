@@ -1,47 +1,37 @@
 package blackjack;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Card {
-    private final char suit;
-    private final int face;
+    private final Suit suit;
+    private final Face face;
 
-    public Card(char suit, int face) {
+    public Card(Suit suit, Face face) {
         checkValidSuit(suit);
         checkValidFace(face);
         this.suit = suit;
         this.face = face;
     }
 
-    public char getSuit() {
+    public Suit getSuit() {
         return suit;
     }
 
-    public int getFace() {
+    public Face getFace() {
         return face;
     }
 
-    private void checkValidSuit(char suit) {
-        List<Character> validChars = Arrays.asList('S', 'H', 'D', 'C');
-        if (!validChars.contains(suit)){
-            throw new IllegalArgumentException("S (spades), H (heart), D (diamond), C (clubs)");
+    private void checkValidSuit(Suit suit) {
+        if (!(suit instanceof Suit)){
+            throw new IllegalArgumentException("Kortet må være av riktig sort");
         }
     }
 
-    private void checkValidFace(int face) {
-        List<Integer> validFaces = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
-        if (!validFaces.contains(face)){
-            throw new IllegalArgumentException("Tallet må være mellom 1 og 13");
+    private void checkValidFace(Face face) {
+        if (!(face instanceof Face)){
+            throw new IllegalArgumentException("Kortet må ha gyldig verdi");
         }
     }
 
     public String toString() {
         return String.format("%s%s", getSuit(), getFace());
-    }
-
-    public static void main(String[] args) {
-        Card card = new Card('S',1);
-        System.out.println(card);
     }
 }

@@ -5,17 +5,13 @@ import java.util.Collections;
 
 public class CardDeck {
 	private ArrayList<Card> cards = new ArrayList<>();
-	//private final int NUM_OF_CARDS = 52; //Muligens bruke denne for å kontrollere at kortstokken inneholder 52 kort.
-	private final int CARDS_PER_TYPE = 13;
-	
+	private final int NUM_OF_CARDS = 52; //For å kontrollere at kortstokken inneholder 52 kort.
 	
 	/**
 	 * Opprettes en hel kortstokk når et instans av klassen CardDeck opprettes.
 	 */
 	public CardDeck() {
 		createFullDeck();
-		
-		
 	}
 	
 	/**
@@ -34,19 +30,30 @@ public class CardDeck {
 	}
 	
 	/**
-	 * Burde vurdere å lage "enums" for suit og face, slik at vi slipper å definere suits og face i denne metoden.
+	 * Bruker verdiene i enumene definert for type og verdi,
+	 * for å opprette kort gjennom Card objektet. 
 	 */
 	public void createFullDeck() {
-		//String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
-		char[] suits = {'S', 'H', 'D', 'C'};
-		
-		for (char suit : suits) {
-			for (int i = 1; i <= CARDS_PER_TYPE; i++) {
-				Card card = new Card(suit, i);
+		for (Suit suit : Suit.values()) {
+			for (Face face : Face.values()) {
+				Card card = new Card(suit, face);
 				cards.add(card);
 			}
  		}
+		checkFullDeck();
 	}
 	
 	
+	public void giveFaceValue() {
+	
+	}
+	
+	/**
+	 * Sjekker om kortstokken inneholder 52 kort.
+	 */
+	private void checkFullDeck() {
+		if (cards.size() != NUM_OF_CARDS) {
+			throw new IllegalArgumentException("Kortstokken inneholder ikke 52 kort");
+		}
+	}
 }
