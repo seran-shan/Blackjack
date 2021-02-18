@@ -21,6 +21,10 @@ public class CardDeck {
 	public ArrayList<Card> getCards() {
         return cards;
     }
+
+	public Card getCard(int indexOfCard) {
+		return getCards()
+	}
 	
 	/**
 	 * Bruker shuffle metoden i Collections biblioteket.
@@ -41,6 +45,10 @@ public class CardDeck {
 			}
  		}
 		checkFullDeck();
+	}
+
+	public void drawCard() {
+
 	}
 	
 	/**
