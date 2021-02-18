@@ -23,7 +23,7 @@ public class CardDeck {
     }
 
 	public Card getCard(int indexOfCard) {
-		return getCards()
+		return getCards().get(indexOfCard);
 	}
 	
 	/**
