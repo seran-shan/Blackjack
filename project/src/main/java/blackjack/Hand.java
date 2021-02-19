@@ -10,8 +10,8 @@ public class Hand {
     /**
      * @param deck
      */
-    public Hand() {
-        deck = new CardDeck();
+    public Hand(CardDeck deck) {
+        this.deck = deck;
         hand = new ArrayList<>();
     }
 

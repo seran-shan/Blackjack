@@ -11,9 +11,10 @@ public class CardDeck {
 	 * Opprettes en hel kortstokk når et instans av klassen CardDeck opprettes.
 	 */
 	public CardDeck() {
-		cards = new ArrayList<>();
+		this.cards = new ArrayList<>();
+		createFullDeck();
 	}
-	
+
 	/**
 	 * Get-metode
 	 * @return liste av alle kortene i bunken
