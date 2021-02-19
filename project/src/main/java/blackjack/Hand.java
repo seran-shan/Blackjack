@@ -81,4 +81,15 @@ public class Hand {
             throw new IllegalStateException("Ingen kort tildelt");
         }
     }
+
+    /**
+     * En toString metode for å printe ut hånda
+     */
+    public String toString() {
+        String out = "";
+        for (Card card : hand) {
+            out += card.toString() + "\n";
+        }
+        return out;
+    }
 }

@@ -7,10 +7,13 @@ public class BlackJackMain {
     /**
      * 
      */
-    public BlackJackMain(CardDeck deck) {
+    public BlackJackMain() {
+        deck = new CardDeck();
         hand = new Hand(deck);
     }
 
-
+    public Hand getHand() {
+        return hand;
+    }
     
 }
