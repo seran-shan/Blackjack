@@ -60,15 +60,22 @@ public class Hand {
                 case JACK -> handValue += 10; 
                 case QUEEN -> handValue += 10;
                 case KING -> handValue += 10; 
-                case ACE -> handValue += 1;
+                case ACE -> {
+                            if (handValue < 10)
+                                handValue += 11;
+                            else
+                                handValue += 1;
+                            }
+                default -> System.err.println("Ugyldig verdi");
             }			
         }
-		return handValue;
+        return handValue;
 	}
 
     public void moveCardBack() {
         checkEmptyHand();
         Card cardToMoveBack = getHand().get(INDEX_OF_FIRST_CARD);
+        checkDuplicate(cardToMoveBack);
         deck.getCards().add(cardToMoveBack);
 
     }
@@ -81,6 +88,15 @@ public class Hand {
             throw new IllegalStateException("Ingen kort tildelt");
         }
     }
+
+    /**
+    * Sjekker duplikat
+    */
+	private void checkDuplicate(Card newCard) {
+		for (Card card : deck.getCards()) {
+			card.equals(newCard);
+		}
+	}
 
     /**
      * En toString metode for å printe ut hånda

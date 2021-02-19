@@ -46,6 +46,7 @@ public class CardDeck {
 			}
  		}
 		checkFullDeck();
+		//sjekk om kortet ekistirerer fra før
 	}
 
 	
