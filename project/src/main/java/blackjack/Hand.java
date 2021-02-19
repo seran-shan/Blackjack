@@ -66,9 +66,7 @@ public class Hand {
                             else
                                 handValue += 1;
                             }
-                default -> {
-                    System.err.println("Ugyldig verdi");
-                }
+                default -> System.err.println("Ugyldig verdi");
             }			
         }
         return handValue;
