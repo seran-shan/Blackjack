@@ -94,7 +94,9 @@ public class Hand {
     */
 	private void checkDuplicate(Card newCard) {
 		for (Card card : deck.getCards()) {
-			card.equals(newCard);
+			if(card.equals(newCard)) {
+                throw new IllegalArgumentException();
+            }
 		}
 	}
 
