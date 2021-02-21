@@ -103,11 +103,13 @@ public class Hand {
     /**
      * En toString metode for å printe ut hånda
      */
+	@Override
     public String toString() {
         String out = "";
         for (Card card : hand) {
             out += card.toString() + "\n";
         }
+        out += "Verdi: " + getHandValue() + "\n";
         return out;
     }
 }
