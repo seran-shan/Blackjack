@@ -1,9 +1,8 @@
-package blackjack;
+package blackjack.model;
 
 public class Dealer extends Hand {
 	private final String dealerName = "MoneyMitch the dealer";
-	private final int BLACK_JACK = 21;
-	private final int DEALER_DRAW_NUM = 21;
+	private final int DEALER_STOP_DRAW = 17;
 	
 
 	public Dealer(CardDeck deck) {
@@ -28,14 +27,15 @@ public class Dealer extends Hand {
 			return false;
 	}
 	
-	public void dealerDrawCard() {
-		if (getHandValue() < DEALER_DRAW_NUM) 
-			drawCard();
+	public boolean isDealerAtStand() {
+		if (getHandValue() < DEALER_STOP_DRAW) 
+			return false;
+		return true;
 	}
 	
 	@Override
 	public String toString() {
-		getDealerName();
+		System.out.println(getDealerName());
 		return super.toString();
 	}
 }

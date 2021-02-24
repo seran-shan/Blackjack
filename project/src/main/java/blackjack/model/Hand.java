@@ -1,4 +1,4 @@
-package blackjack;
+package blackjack.model;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ public class Hand {
     private CardDeck deck;
     private final int INDEX_OF_FIRST_CARD = 0;
     private ArrayList<Card> hand;
+    protected final int BLACK_JACK = 21;
 
     /**
      * @param deck
@@ -99,7 +100,15 @@ public class Hand {
             }
 		}
 	}
-
+	
+	protected boolean isBlackJack() {
+		return getHandValue() == BLACK_JACK;
+	}
+	
+	protected boolean isBusted() {
+		return getHandValue() > BLACK_JACK;
+	}
+	
     /**
      * En toString metode for å printe ut hånda
      */
@@ -112,4 +121,6 @@ public class Hand {
         out += "Verdi: " + getHandValue() + "\n";
         return out;
     }
+	
+	
 }
