@@ -1,19 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackjack.fxui.StartPageController">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #90EE90;" HBox.hgrow="ALWAYS">
          <HBox.margin>
             <Insets right="3.0" />
          </HBox.margin>
+         <children>
+            <Label prefHeight="35.0" prefWidth="225.0" text="BLACK JACK">
+               <VBox.margin>
+                  <Insets left="-20.0" top="-120.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <TextField maxWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Brukernavn" style="-fx-background-color: white; -fx-background-radius: 0px;">
+               <VBox.margin>
+                  <Insets top="65.0" />
+               </VBox.margin>
+            </TextField>
+            <PasswordField maxWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Passord" style="-fx-background-color: white; -fx-border-radius: 0px;">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </PasswordField>
+            <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefWidth="200.0" style="-fx-background-color: #90EE90 #90EE90;">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+               <children>
+                  <Button layoutX="116.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-radius: 0px;" text="Log inn" textAlignment="CENTER" />
+               </children>
+            </HBox>
+         </children>
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #90EE90;" HBox.hgrow="ALWAYS">
          <HBox.margin>
@@ -22,7 +53,7 @@
          <children>
             <TextField maxWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Fornavn" style="-fx-background-color: white; -fx-background-radius: 0px;">
                <VBox.margin>
-                  <Insets top="5.0" />
+                  <Insets top="65.0" />
                </VBox.margin>
             </TextField>
             <TextField layoutX="18.0" layoutY="197.0" maxWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Etternavn" style="-fx-background-color: white; -fx-background-radius: 0px;">
@@ -31,6 +62,11 @@
                </VBox.margin>
             </TextField>
             <TextField layoutX="18.0" layoutY="210.0" maxWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Brukernavn" style="-fx-background-color: white; -fx-background-radius: 0px;">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField layoutX="59.0" layoutY="194.0" maxWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Passord" style="-fx-background-color: white; -fx-background-radius: 0px;">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
@@ -50,6 +86,14 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </ChoiceBox>
+            <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefWidth="200.0" style="-fx-background-color: #90EE90 #90EE90;">
+               <children>
+                  <Button layoutX="116.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-radius: 0px;" text="Opprett konto" textAlignment="CENTER" />
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
