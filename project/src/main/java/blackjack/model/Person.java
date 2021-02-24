@@ -51,7 +51,7 @@ public class Person {
 	}
 	
 	public void setPassword(String password) {
-		if (!validatePasword(password)) {
+		if (!validatePassword(password)) {
 			throw new IllegalArgumentException("Passordet er nødt til å bestå av: 1 stor bokstav - 1 liten bokstav - et tall - minst 3 tegn - ingen mellomrom ");
 		}
 		this.password = password;
@@ -124,7 +124,7 @@ public class Person {
 		
 		List<String> list = Arrays.asList(countryCodes);
 		
-		if (emailToValidate.matches("^([a-åA-Å0-9]{2,}))@([a-åA-Å0-9]{1,})\\.([a-åA-Å]{2,})$")) {
+		if (emailToValidate.matches("^([a-åA-Å0-9]{2,})@([a-åA-Å0-9]{1,})\\.([a-åA-Å]{2,})$")) {
 			String[] mailSplitted = emailToValidate.split("[\\.@]");
 			//String aliasMail = mailSplitted[0];
 			//String domain = mailSplitted[1];
@@ -156,13 +156,13 @@ public class Person {
 	}
 	
 	private boolean validateUsername(String username) {
-		if (username.matches("^([a-zA-Z0-9]{3,})")) {
+		if (username.matches("^([a-zA-Z0-9]{3,})$")) {
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean validatePasword(String password) {
+	public boolean validatePassword(String password) {
 		if (password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{3,}$")) {
 			return true;
 		}

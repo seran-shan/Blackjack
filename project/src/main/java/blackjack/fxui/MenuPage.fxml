@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="403.0" prefWidth="600.0" style="-fx-background-color: #90EE90;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
+	<children>
       <Label alignment="CENTER" layoutX="161.0" layoutY="14.0" prefHeight="94.0" prefWidth="279.0" text="BLACK JACK">
          <font>
             <Font size="40.0" />
