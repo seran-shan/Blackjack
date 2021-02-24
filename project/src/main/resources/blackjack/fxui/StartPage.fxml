@@ -1,16 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0">
-         <image>
-            <Image url="@../pictures/ForsideBilde.jpg" />
-         </image>
-      </ImageView>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #90EE90;" HBox.hgrow="ALWAYS">
+         <HBox.margin>
+            <Insets right="3.0" />
+         </HBox.margin>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #90EE90;" HBox.hgrow="ALWAYS">
+         <HBox.margin>
+            <Insets left="3.0" />
+         </HBox.margin>
+         <children>
+            <TextField maxWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Fornavn" style="-fx-background-color: white; -fx-background-radius: 0px;">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField layoutX="18.0" layoutY="197.0" maxWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Etternavn" style="-fx-background-color: white; -fx-background-radius: 0px;">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField layoutX="18.0" layoutY="210.0" maxWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Brukernavn" style="-fx-background-color: white; -fx-background-radius: 0px;">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField layoutX="18.0" layoutY="170.0" maxWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="E-post" style="-fx-background-color: white; -fx-background-radius: 0px;">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <DatePicker editable="false" prefHeight="30.0" prefWidth="200.0" promptText="Bursdag" showWeekNumbers="true" style="-fx-background-color: white; -fx-background-radius: 0px;">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </DatePicker>
+            <ChoiceBox fx:id="gender" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 0px;">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </ChoiceBox>
+         </children>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+      </VBox>
    </children>
-</AnchorPane>
+</HBox>

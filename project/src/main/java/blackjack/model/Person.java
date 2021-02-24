@@ -51,7 +51,7 @@ public class Person {
 	
 	public void setEmail(String email) {
 		if (!validateMail(email)) {
-			throw new IllegalArgumentException("Emailen må være i formatet: fornavn.etternavn@domene.landskode(ccTLD)");
+			throw new IllegalArgumentException("Emailen er ikke gyldig");
 		}
 		this.email = email;
 	}
@@ -112,14 +112,13 @@ public class Person {
 		
 		List<String> list = Arrays.asList(countryCodes);
 		
-		if (emailToValidate.matches("^([a-åA-Å]{2,})\\.([a-åA-Å]{2,})@([a-åA-Å0-9]{1,})\\.([a-åA-Å]{2,})$")) {
+		if (emailToValidate.matches("^([a-åA-Å0-9]{2,}))@([a-åA-Å0-9]{1,})\\.([a-åA-Å]{2,})$")) {
 			String[] mailSplitted = emailToValidate.split("[\\.@]");
-			String firstNameMail = mailSplitted[0];
-			String lastNameMail = mailSplitted[1];
-			//String domain = mailSplitted[2];
-			String countryCode = mailSplitted[3];
+			//String aliasMail = mailSplitted[0];
+			//String domain = mailSplitted[1];
+			String countryCode = mailSplitted[2];
 			
-			if (firstName.equals(firstNameMail) && lastName.equals(lastNameMail) && list.contains(countryCode)) {
+			if (list.contains(countryCode)) {
 				return true;
 			}
 		}
@@ -145,7 +144,7 @@ public class Person {
 	}
 	
 	private boolean validateUsername(String username) {
-		if (username.matches("[a-åA-Å0-9]{3,}")) {
+		if (username.matches("^([a-zA-Z0-9]{3,})")) {
 			return true;
 		}
 		return false;

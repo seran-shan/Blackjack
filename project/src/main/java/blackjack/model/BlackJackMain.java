@@ -83,7 +83,7 @@ public class BlackJackMain {
 	                		System.out.println("Måned: "); int month = Integer.parseInt(reader.nextLine());
 	                		System.out.println("År: "); int year = Integer.parseInt(reader.nextLine());
 	                		System.out.println("Mann(M), Dame(D) eller Udefinert(0)"); String gender = reader.nextLine();
-	                																   char genderAsChar = gender.charAt(0);
+	                																   char genderAsChar = gender.toUpperCase().charAt(0);
 	                		Date birthday = new Date((((year * 365) * (month * 12) + day)) * 24 * 60 * 60 * 1000);
 		                	System.out.print("Tast inn et ønsket beløp: "); double startDeposit = Double.parseDouble(reader.nextLine());
 		                	mainClass = new BlackJackMain(fullname, username, email, birthday, genderAsChar, startDeposit);
@@ -94,7 +94,6 @@ public class BlackJackMain {
 						} else {
 							System.out.println("Registrering mislyktes");
 						} 
-	                	
 	                    break;
 	
 	                case DEPOSIT_MONEY_FROM_ACCOUNT:
@@ -169,7 +168,7 @@ public class BlackJackMain {
         	//trekker for dealer
         	mainClass.dealer.addCardToHand();
         	System.out.println(mainClass.dealer);
-        	//Dette kortet er skjult
+        	//Dette kortet er skjult for bruker
         	mainClass.dealer.addCardToHand();
         	
         	
