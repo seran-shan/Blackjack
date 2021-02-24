@@ -7,13 +7,13 @@ public class Player extends Hand {
 	private double balance;
 	private Person person;
 
-	public Player(String name, String userName, String email, Date birthday, char gender, double balance, CardDeck deck) {
+	public Player(String name, String userName, String password, String email, Date birthday, char gender, double balance, CardDeck deck) {
 		super(deck);
 		this.balance = balance;
 		if (!isValidBalance()) {
 			throw new IllegalArgumentException("Kan ikke være negativt beløp!");
 		}
-		this.person = new Person(name, userName, email, birthday, gender);
+		this.person = new Person(name, userName, password, email, birthday, gender);
 	}
 	
 	public String getUserName() {

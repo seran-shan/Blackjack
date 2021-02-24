@@ -11,12 +11,13 @@ public class Person {
 	private String username;
 	private Date birthday;
 	private char gender;
+	private String password;
 	
 	
-	
-	public Person(String name, String email, String username, Date birthday, char gender) {
+	public Person(String name, String email, String username, String password, Date birthday, char gender) {
 		setName(name);
 		setUsername(username);
+		setPassword(password);
 		setEmail(email);
 		setBirthday(birthday);
 		setGender(gender);
@@ -43,6 +44,17 @@ public class Person {
 			throw new IllegalArgumentException("Brukernavnet kan kun bestå av bokstaver og tall, og må være minst tre tegn");
 		}
 		this.username = username;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		if (!validatePasword(password)) {
+			throw new IllegalArgumentException("Passordet er nødt til å bestå av: 1 stor bokstav - 1 liten bokstav - et tall - minst 3 tegn - ingen mellomrom ");
+		}
+		this.password = password;
 	}
 
 	public String getEmail() {
@@ -145,6 +157,13 @@ public class Person {
 	
 	private boolean validateUsername(String username) {
 		if (username.matches("^([a-zA-Z0-9]{3,})")) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean validatePasword(String password) {
+		if (password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{3,}$")) {
 			return true;
 		}
 		return false;

@@ -20,10 +20,10 @@ public class BlackJackMain {
     /**
      * 
      */
-    public BlackJackMain(String name, String userName, String email, Date birthday, char gender, double balance) {
+    public BlackJackMain(String name, String userName, String password, String email, Date birthday, char gender, double balance) {
         deck = new CardDeck();
         dealer = new Dealer(deck);
-        player = new Player(name, userName, email, birthday, gender, balance, deck);
+        player = new Player(name, userName, password, email, birthday, gender, balance, deck);
     }
     
    
@@ -78,6 +78,7 @@ public class BlackJackMain {
 	                		System.out.println("Tast inn etternavn: "); String lastname = reader.nextLine();
 	                		String fullname = firstname + " " + lastname;
 	                		System.out.print("Tast inn et brukernavn: "); String username = reader.nextLine();
+	                		System.out.print("Tast inn et passord: "); String password = reader.nextLine();
 	                		System.out.print("Tast inn e-post: "); String email = reader.nextLine();
 	                		System.out.println("Dag: "); int day = Integer.parseInt(reader.nextLine());
 	                		System.out.println("Måned: "); int month = Integer.parseInt(reader.nextLine());
@@ -86,7 +87,7 @@ public class BlackJackMain {
 	                																   char genderAsChar = gender.toUpperCase().charAt(0);
 	                		Date birthday = new Date((((year * 365) * (month * 12) + day)) * 24 * 60 * 60 * 1000);
 		                	System.out.print("Tast inn et ønsket beløp: "); double startDeposit = Double.parseDouble(reader.nextLine());
-		                	mainClass = new BlackJackMain(fullname, username, email, birthday, genderAsChar, startDeposit);
+		                	mainClass = new BlackJackMain(fullname, username, password, email, birthday, genderAsChar, startDeposit);
 		                	System.out.println("Vellykket registrering!");
 		                	
 						} else if (mainClass != null) {
