@@ -31,7 +31,7 @@ public class BlackjackApp extends Application {
 	
     
     @FXML
-	private static void showMenuPage() throws IOException{
+	public static void showMenuPage() throws IOException{
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(BlackJackMain.class.getResource("MenuPage.fxml"));
 		Button createAccountButton = loader.load();
@@ -39,21 +39,21 @@ public class BlackjackApp extends Application {
  	}
     
     @FXML
-	private static void showDepositPage() throws IOException{
+	public static void showDepositPage() throws IOException{
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(BlackJackMain.class.getResource("DepositPage.fxml"));
 		Button depositButton = loader.load();
  	}
     
     @FXML
-	private static void showWithdrawPage() throws IOException{
+	public static void showWithdrawPage() throws IOException{
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(BlackJackMain.class.getResource("WithdrawPage.fxml"));
 		Button withdrawButton = loader.load();
- 	}
+ 	}  
     
     @FXML
-	private static void showGamePage() throws IOException{
+	public static void showGamePage() throws IOException{
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(BlackJackMain.class.getResource("GamePage.fxml"));
 		Button gameButton = loader.load();

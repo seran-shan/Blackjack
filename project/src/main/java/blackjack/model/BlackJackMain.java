@@ -73,55 +73,19 @@ public class BlackJackMain {
 	            int menuSelection = getMenuChoice();
 	            switch (menuSelection) {
 	                case REGISTER_ACCOUNT:
-	                	if (mainClass == null) {
-	                		System.out.println("Tast inn fornavn: "); String firstname = reader.nextLine();
-	                		System.out.println("Tast inn etternavn: "); String lastname = reader.nextLine();
-	                		String fullname = firstname + " " + lastname;
-	                		System.out.print("Tast inn et brukernavn: "); String username = reader.nextLine();
-	                		System.out.print("Tast inn et passord: "); String password = reader.nextLine();
-	                		System.out.print("Tast inn e-post: "); String email = reader.nextLine();
-	                		System.out.println("Dag: "); int day = Integer.parseInt(reader.nextLine());
-	                		System.out.println("Måned: "); int month = Integer.parseInt(reader.nextLine());
-	                		System.out.println("År: "); int year = Integer.parseInt(reader.nextLine());
-	                		System.out.println("Mann(M), Dame(D) eller Udefinert(0)"); String gender = reader.nextLine();
-	                																   char genderAsChar = gender.toUpperCase().charAt(0);
-	                		Date birthday = new Date((((year * 365) * (month * 12) + day)) * 24 * 60 * 60 * 1000);
-		                	System.out.print("Tast inn et ønsket beløp: "); double startDeposit = Double.parseDouble(reader.nextLine());
-		                	mainClass = new BlackJackMain(fullname, username, password, email, birthday, genderAsChar, startDeposit);
-		                	System.out.println("Vellykket registrering!");
-		                	
-						} else if (mainClass != null) {
-							System.out.println("Bruker er allerede registrert!");
-						} else {
-							System.out.println("Registrering mislyktes");
-						} 
+	                	 registerAccount();
 	                    break;
 	
 	                case DEPOSIT_MONEY_FROM_ACCOUNT:
-	                	if(mainClass != null){
-	                		System.out.println("Innskudd");
-	                    	System.out.print("Tast inn ønsket beløp: "); double depositAmount = Double.parseDouble(reader.nextLine());
-	                    	mainClass.player.deposit(depositAmount);
-	                        System.out.println("Ny saldo: " + mainClass.player.getBalance() + "kr");
-	                	} else {
-	                		System.err.println("Spiller er ikke registrert");
-						}
+	                	depositMoneyFromAccount();
 	                    break;
 	
 	                case CHECK_BALANCE:
-	                	if(mainClass != null)
-	                    	System.out.println("Saldoen din er: " + mainClass.player.getBalance() + " kr");
+	                	checkBalance();
 	                    break;
 	
 	                case WITHDRAW_MONEY_FROM_ACCOUNT:
-	                	if(mainClass != null){
-	                		System.out.println("Uttak");
-	                    	System.out.print("Tast inn ønsket beløp: "); double withdrawAmount = reader.nextDouble();
-	                    	mainClass.player.withdraw(withdrawAmount);
-	                        System.out.println("Ny saldo: " + mainClass.player.getBalance() + " kr");
-	                	} else {
-	                		System.err.println("Spiller er ikke registrert");
-						}
+	                	withdrawMoneyFromAccount();
 	                    break;
 	
 	                case START_NEW_ROUND:
@@ -129,7 +93,7 @@ public class BlackJackMain {
 	                    break;
 	
 	                case EXIT:
-	                    System.out.println("\nTakk for at du brukte Black Jack applikasjonen, hadet!");
+	                	System.out.println("\nTakk for at du brukte Black Jack applikasjonen, hadet!");
 	                    quit = true;
 	                    reader.close();
 	                    break;
@@ -148,7 +112,58 @@ public class BlackJackMain {
 			//getMenuChoice();
 		}
     }
-
+    
+    private static void withdrawMoneyFromAccount() {
+    	if(mainClass != null){
+    		System.out.println("Uttak");
+        	System.out.print("Tast inn ønsket beløp: "); double withdrawAmount = reader.nextDouble();
+        	mainClass.player.withdraw(withdrawAmount);
+            System.out.println("Ny saldo: " + mainClass.player.getBalance() + " kr");
+    	} else {
+    		System.err.println("Spiller er ikke registrert");
+		}
+	}
+    
+    private static void checkBalance() {
+    	if(mainClass != null)
+        	System.out.println("Saldoen din er: " + mainClass.player.getBalance() + " kr");
+	}
+    
+    private static void depositMoneyFromAccount() {
+    	if(mainClass != null){
+    		System.out.println("Innskudd");
+        	System.out.print("Tast inn ønsket beløp: "); double depositAmount = Double.parseDouble(reader.nextLine());
+        	mainClass.player.deposit(depositAmount);
+            System.out.println("Ny saldo: " + mainClass.player.getBalance() + "kr");
+    	} else {
+    		System.err.println("Spiller er ikke registrert");
+		}
+	}
+    
+    private static void registerAccount() {
+    	if (mainClass == null) {
+    		System.out.println("Tast inn fornavn: "); String firstname = reader.nextLine();
+    		System.out.println("Tast inn etternavn: "); String lastname = reader.nextLine();
+    		String fullname = firstname + " " + lastname;
+    		System.out.print("Tast inn et brukernavn: "); String username = reader.nextLine();
+    		System.out.print("Tast inn et passord: "); String password = reader.nextLine();
+    		System.out.print("Tast inn e-post: "); String email = reader.nextLine();
+    		System.out.println("Dag: "); int day = Integer.parseInt(reader.nextLine());
+    		System.out.println("Måned: "); int month = Integer.parseInt(reader.nextLine());
+    		System.out.println("År: "); int year = Integer.parseInt(reader.nextLine());
+    		System.out.println("Mann(M), Dame(D) eller Udefinert(0)"); String gender = reader.nextLine();
+    																   char genderAsChar = gender.toUpperCase().charAt(0);
+    		Date birthday = new Date((((year * 365) * (month * 12) + day)) * 24 * 60 * 60 * 1000);
+        	System.out.print("Tast inn et ønsket beløp: "); double startDeposit = Double.parseDouble(reader.nextLine());
+        	mainClass = new BlackJackMain(fullname, username, password, email, birthday, genderAsChar, startDeposit);
+        	System.out.println("Vellykket registrering!");
+        	
+		} else if (mainClass != null) {
+			System.out.println("Bruker er allerede registrert!");
+		} else {
+			System.out.println("Registrering mislyktes");
+		}
+    }
     
     private static void gamePlay() {
     	System.out.println("Velkommen " + mainClass.player.getUserName());
@@ -232,13 +247,16 @@ public class BlackJackMain {
         		mainClass.player.moveCardBack();
         	}
     	}
-    	System.out.println("Takk for at du spilte!");
-    	
+    	System.out.println("Takk for at du spilte!");	
    }
    
-   private static BlackJackMain mainClass = null;
+    private static void exitApplication() {
+    	
+    }
+    
+    private static BlackJackMain mainClass = null;
 
-   public static void main(String[] args) {
+    public static void main(String[] args) {
 	   start();
-   }
+  	}
 }
