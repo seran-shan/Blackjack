@@ -1,8 +1,6 @@
 package blackjack.fxui;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import blackjack.model.BlackJackMain;
 import blackjack.model.UserValidation;
@@ -11,7 +9,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,7 +21,7 @@ import javafx.stage.Stage;
 
 public class StartPageController {
 	
-	private static BlackJackMain blackJackMain;
+	private BlackJackMain blackJackMain;
 	
 	ObservableList<String> valigGender = FXCollections.observableArrayList("Mann", "Dame", "Udefinert");
 
@@ -36,13 +33,14 @@ public class StartPageController {
 	@FXML private ChoiceBox<String> genderChoiceBox;
 	@FXML private Label errorMessageLabel;
 	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize(BlackJackMain blackJackMain) {
+		this.blackJackMain = blackJackMain;
+	
 		if ( genderChoiceBox != null) {
 		genderChoiceBox.getItems().add("Mann");
 		genderChoiceBox.getItems().add("Dame");
 		genderChoiceBox.getItems().add("Udefinert");
-		//genderChoiceBox.setValue("Mann");
+		genderChoiceBox.setValue("Mann");
 		}}
 	
 	/**
@@ -111,7 +109,7 @@ public class StartPageController {
 			}
 	}
 
-	public static BlackJackMain getBlackJackMain() {
+	public BlackJackMain getBlackJackMain() {
 		return blackJackMain;
 	}
 }

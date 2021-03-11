@@ -20,6 +20,10 @@ public class WithdrawPageController {
 	@FXML private TextField withdrawAmountTextField;
 	@FXML private Button confirmButton;
 	
+	public void initialize(BlackJackMain blackJackMain) {
+		this.blackJackMain = blackJackMain;
+	}
+	
 	@FXML
 	public void confirmButtonOnAction(ActionEvent event) throws IOException {
 		double withdrawAmount = Double.parseDouble(withdrawAmountTextField.getText());
