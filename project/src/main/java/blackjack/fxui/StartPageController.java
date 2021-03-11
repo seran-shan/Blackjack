@@ -37,11 +37,12 @@ public class StartPageController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		if ( genderChoiceBox != null) {
 		genderChoiceBox.getItems().add("Mann");
 		genderChoiceBox.getItems().add("Dame");
 		genderChoiceBox.getItems().add("Udefinert");
-		genderChoiceBox.setValue("Mann");
-	}
+		//genderChoiceBox.setValue("Mann");
+		}}
 	
 	/**
 	 * Skal bytte scene til menyen

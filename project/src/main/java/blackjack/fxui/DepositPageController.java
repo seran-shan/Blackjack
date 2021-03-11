@@ -2,6 +2,7 @@ package blackjack.fxui;
 
 import java.io.IOException;
 
+import blackjack.model.BlackJackMain;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +15,11 @@ import javafx.stage.Stage;
 
 public class DepositPageController extends StartPageController {
 	
+	private BlackJackMain blackJackMain;
+	
 	@FXML private TextField depositAmountTextField;
 	@FXML private Button confirmButton;
+	
 	
 	@FXML
 	public void confirmButtonOnAction(ActionEvent event) throws IOException {
