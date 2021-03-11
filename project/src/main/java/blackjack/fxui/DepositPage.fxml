@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="403.0" prefWidth="600.0" style="-fx-background-color: #90EE90;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1">
+<AnchorPane prefHeight="403.0" prefWidth="600.0" style="-fx-background-color: #006D5B;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="blackjack.fxui.DepositPageController">
    <children>
       <Label alignment="CENTER" layoutX="186.0" layoutY="14.0" prefHeight="94.0" prefWidth="228.0" text="INNSKUDD">
          <font>
@@ -15,6 +15,6 @@
          </font>
       </Label>
       <Button layoutX="347.0" layoutY="123.0" mnemonicParsing="false" style="-fx-background-radius: 0px;" text="Bekreft" />
-      <TextField layoutX="186.0" layoutY="123.0" style="-fx-background-color: white; -fx-background-radius: 0px;" />
+      <TextField fx:id="depositAmountTextField" layoutX="186.0" layoutY="123.0" style="-fx-background-color: white; -fx-background-radius: 0px;" />
    </children>
 </AnchorPane>

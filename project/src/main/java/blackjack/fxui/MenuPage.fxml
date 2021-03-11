@@ -5,15 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="403.0" prefWidth="600.0" style="-fx-background-color: #90EE90;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="403.0" prefWidth="600.0" style="-fx-background-color: #006D5B;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackjack.fxui.MenuPageController">
 	<children>
       <Label alignment="CENTER" layoutX="161.0" layoutY="14.0" prefHeight="94.0" prefWidth="279.0" text="BLACK JACK">
          <font>
             <Font size="40.0" />
          </font>
       </Label>
-      <Button layoutX="253.0" layoutY="129.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" style="-fx-background-radius: 0px;" text="Start Spill" />
-      <Button layoutX="253.0" layoutY="188.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" text="Innskudd" />
-      <Button layoutX="253.0" layoutY="245.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" text="Uttakk" />
+      <Button fx:id="gameButton" layoutX="253.0" layoutY="129.0" mnemonicParsing="false" onAction="#gameButtonOnAction" prefHeight="27.0" prefWidth="77.0" style="-fx-background-radius: 0px;" text="Start Spill" />
+      <Button fx:id="depositButton" layoutX="253.0" layoutY="175.0" mnemonicParsing="false" onAction="#depositButtonOnAction" prefHeight="27.0" prefWidth="77.0" text="Innskudd" />
+      <Button fx:id="withdrawButton" layoutX="253.0" layoutY="220.0" mnemonicParsing="false" onAction="#withdrawButtonOnAction" prefHeight="27.0" prefWidth="77.0" text="Uttakk" />
+      <Button fx:id="exitButton" layoutX="253.0" layoutY="315.0" mnemonicParsing="false" onAction="#exitButtonOnAction" prefHeight="27.0" prefWidth="77.0" text="Avslutt" />
    </children>
 </AnchorPane>

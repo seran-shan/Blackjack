@@ -1,38 +1,41 @@
 package blackjack.model;
 
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 public class Person {
 	
-	private String name;
+	private String firstname;
+	private String lastname;
 	private String email;
 	private String username;
-	private Date birthday;
-	private char gender;
 	private String password;
+	private LocalDate birthday;
+	private String gender;
+	//private UserValidation userValidation = new UserValidation();
 	
-	
-	public Person(String name, String email, String username, String password, Date birthday, char gender) {
-		setName(name);
-		setUsername(username);
-		setPassword(password);
-		setEmail(email);
-		setBirthday(birthday);
-		setGender(gender);
+	public Person(String firstname, String lastname, String email, String username, String password, LocalDate birthday, String gender) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.birthday = birthday;
+		this.gender = gender;
 	}
 
 	public String getName() {
-		return name;
+		return firstname + " " + lastname;
+	}
+
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 	
-	public void setName(String name) {
-		if (!validateName(name)) {
-			throw new IllegalArgumentException("feil");
-		} else {
-			this.name = name;
-		}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 	
 	public String getUsername() {
@@ -68,11 +71,11 @@ public class Person {
 		this.email = email;
 	}
 	
-	public Date getBirthday() {
+	public LocalDate getBirthday() {
 		return birthday;
 	} 
 	
-	public void setBirthday(Date birthday) {
+	public void setBirthday(LocalDate birthday) {
 		if (!validateBirthday(birthday)) {
 			throw new IllegalArgumentException("18-års grense!");
 		} else {
@@ -80,11 +83,11 @@ public class Person {
 		}
 	}
 	
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 	
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		if (!validateGender(gender)) {
 			throw new IllegalArgumentException("Kjønnet må beskrives av kun et tegn, hendholdsvis; M, F, eller 0");
 		} else {
@@ -92,14 +95,14 @@ public class Person {
 		}
 	}
 	
-	private boolean validateName(String name) {
-		return name.matches("^([a-åA-Å]{2,})\s([a-åA-Å]{2,})$");
-	}
+//	private boolean validateName(String name) {
+//		return name.matches("^([a-åA-Å]{2,})\s([a-åA-Å]{2,})$");
+//	}
 	
 	private boolean validateMail(String emailToValidate) {
-		String[] nameSplitted = getName().split(" ");
-		String firstName = nameSplitted[0].toLowerCase();
-		String lastName = nameSplitted[1].toLowerCase();
+//		String[] nameSplitted = getName().split(" ");
+//		String firstName = nameSplitted[0].toLowerCase();
+//		String lastName = nameSplitted[1].toLowerCase();
 		String[] countryCodes = {"ad", "ae", "af", "ag", "ai", "al", "am", "ao", "aq", "ar", "as", "at", 
 								 "au", "aw", "ax", "az", "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", 
 								 "bj", "bl", "bm", "bn", "bo", "bq", "br", "bs", "bt", "bv", "bw", "by", 
@@ -137,19 +140,28 @@ public class Person {
 		return false;
 	}
 	
-	private boolean validateBirthday(Date birthday1) {
-		Long eighteenYears = 18L * 365L * 24L * 60L * 60L * 1000L;
-		Date d1 = new Date(eighteenYears);
-		if (birthday1.before(d1)) {
+	public boolean validateBirthday(LocalDate birthday) {
+		LocalDate eighteenYears = LocalDate.now();
+		eighteenYears.minusYears(18);
+		
+		if (birthday.isBefore(eighteenYears)) {
 			return true;
-		} 
+		}
 		return false;
 	}
 	
 	
-	private boolean validateGender(char gender) {
-		String genderString = String.valueOf(gender);
-		if (genderString.matches("[MF\0]{1}")) {
+//	private boolean validateGender(char gender) {
+//		String genderString = String.valueOf(gender);
+//		if (genderString.matches("[MF\0]{1}")) {
+//			return true;
+//		}
+//		return false;
+//	}
+	
+	public boolean validateGender(String gender) {
+		List<String> genderString = Arrays.asList("Mann", "Dame", "Udefinert");
+		if (genderString.contains(gender)) {
 			return true;
 		}
 		return false;
@@ -168,10 +180,13 @@ public class Person {
 		}
 		return false;
 	}
-	
-	
+
 	@Override
 	public String toString() {
-		return "Person [name=" + name + ", email=" + email + ", birthday=" + birthday + ", gender=" + gender + "]";
+		return "Person [firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + ", username="
+				+ username + ", birthday=" + birthday + ", gender=" + gender + ", password=" + password + "]";
 	}
+	
+	
+	
 }

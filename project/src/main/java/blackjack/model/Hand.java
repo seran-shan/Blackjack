@@ -36,8 +36,8 @@ public class Hand {
     /**
      * Gir både spilleren eller dealeren nytt kort.
      */
-    public void addCardToHand() {
-        getHand().add(drawCard());
+    public void addCardToHand(Card card) {
+        getHand().add(card);
     }
 
     /**

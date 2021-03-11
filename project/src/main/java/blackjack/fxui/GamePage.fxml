@@ -1,8 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #006D5B;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackjack.fxui.GamePageController">
+   <children>
+      <Label layoutX="250.0" layoutY="30.0" prefHeight="19.0" prefWidth="100.0" text="DEAELRS HÅND">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="dealerFirstCard" fitHeight="120.0" fitWidth="80.0" layoutX="226.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="dealerSecondCard" fitHeight="120.0" fitWidth="80.0" layoutX="250.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="dealerThirdCard" fitHeight="120.0" fitWidth="80.0" layoutX="284.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" />
+      <Label alignment="CENTER" layoutX="266.0" layoutY="168.0" prefHeight="19.0" prefWidth="68.0" text="DIN HÅND">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="firstCard" fitHeight="120.0" fitWidth="80.0" layoutX="238.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="secondCard" fitHeight="120.0" fitWidth="80.0" layoutX="262.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="thirdCard" fitHeight="120.0" fitWidth="80.0" layoutX="278.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true" />
+      <ButtonBar layoutX="475.0" layoutY="346.0" prefHeight="40.0" prefWidth="111.0">
+        <buttons>
+          <Button fx:id="resetButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 0px;" text="NULLSTILL BET">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+        </buttons>
+      </ButtonBar>
+      <TextField fx:id="balanceField" editable="false" layoutX="485.0" layoutY="290.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 0px;" text="Saldo:  0 ,-">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <TextField fx:id="betField" editable="false" layoutX="485.0" layoutY="319.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 0px;" text="Bet: 0 ,-">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <ButtonBar layoutX="9.0" layoutY="287.0" prefHeight="65.0" prefWidth="121.0">
+         <buttons>
+          <Button fx:id="startButton" mnemonicParsing="false" prefHeight="57.0" prefWidth="119.0" style="-fx-background-radius: 0px;" text="START">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Button>
+         </buttons>
+      </ButtonBar>
+      <Button fx:id="bet20Button" layoutX="20.0" layoutY="355.0" minWidth="21.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="29.0" style="-fx-background-radius: 0px;" text="20">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
+      <Button fx:id="bet100Button" layoutX="60.0" layoutY="355.0" minWidth="21.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="29.0" style="-fx-background-radius: 0px;" text="100">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
+      <Button fx:id="bet200Button" layoutX="101.0" layoutY="355.0" minWidth="21.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="29.0" style="-fx-background-radius: 0px;" text="200">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
+      <ButtonBar layoutX="205.0" layoutY="346.0" prefHeight="40.0" prefWidth="111.0">
+        <buttons>
+            <Button fx:id="hitButton" minWidth="55.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="89.0" style="-fx-background-radius: 0px;" text="TREKK">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="standButton" mnemonicParsing="false" prefHeight="25.0" style="-fx-background-radius: 0px;" text="STÅ" />
+        </buttons>
+      </ButtonBar>
+   </children>
 </AnchorPane>
-

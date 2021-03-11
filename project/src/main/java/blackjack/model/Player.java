@@ -1,21 +1,25 @@
 package blackjack.model;
 
 import java.lang.IllegalArgumentException;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Player extends Hand {
 	private double balance;
 	private Person person;
 
-	public Player(String name, String userName, String password, String email, Date birthday, char gender, double balance, CardDeck deck) {
+	public Player(String firstname, String lastname, String userName, String password, String email, LocalDate birthday, String gender, double balance, CardDeck deck) {
 		super(deck);
 		this.balance = balance;
 		if (!isValidBalance()) {
 			throw new IllegalArgumentException("Kan ikke være negativt beløp!");
 		}
-		this.person = new Person(name, userName, password, email, birthday, gender);
+		this.person = new Person(firstname, lastname, userName, password, email, birthday, gender);
 	}
 	
+	public Player(String userName, String password, CardDeck deck) {
+		super(deck);
+	}
+
 	public String getUserName() {
 		return person.getUsername();
 	}
