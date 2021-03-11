@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class DepositPageController extends StartPageController {
+public class DepositPageController{
 	
 	private BlackJackMain blackJackMain;
 	
@@ -24,7 +24,7 @@ public class DepositPageController extends StartPageController {
 	@FXML
 	public void confirmButtonOnAction(ActionEvent event) throws IOException {
 		double withdrawAmount = Double.parseDouble(depositAmountTextField.getText());
-		getBlackJackMain().getPlayer().withdraw(withdrawAmount);
+		blackJackMain.getPlayer().withdraw(withdrawAmount);
 		
 		
 		Parent menuParent = FXMLLoader.load(getClass().getResource("MenuPage.fxml"));

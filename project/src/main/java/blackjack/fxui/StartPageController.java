@@ -22,9 +22,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class StartPageController implements Initializable {
+public class StartPageController {
 	
 	private static BlackJackMain blackJackMain;
+	
 	ObservableList<String> valigGender = FXCollections.observableArrayList("Mann", "Dame", "Udefinert");
 
 	@FXML private Button loginButton, regButton;

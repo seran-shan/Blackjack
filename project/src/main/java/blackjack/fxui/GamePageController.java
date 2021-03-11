@@ -1,13 +1,15 @@
 package blackjack.fxui;
 
+import blackjack.model.BlackJackMain;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
-public class GamePageController extends StartPageController {
+public class GamePageController{
 
+	private BlackJackMain blackJackMain;
 	
 	@FXML private Button startButton, bet20Button, bet100Button, bet200Button,
 				 		 hitButton, standButton, resetButton;
@@ -20,46 +22,46 @@ public class GamePageController extends StartPageController {
 	@FXML
 	public void bet20buttonOnAction() {
 		double bettingAmount = 20; 
-		getBlackJackMain().bet(bettingAmount);
-		balanceField.setText("Bank: " + getBlackJackMain().showBalance() + " ,-");
+		blackJackMain.bet(bettingAmount);
+		balanceField.setText("Bank: " + blackJackMain.showBalance() + " ,-");
 		betField.setText("Bet: " + bettingAmount + " ,-");
 	}
 
 	@FXML
 	public void bet100buttonOnAction() {
 		double bettingAmount = 100; 
-		getBlackJackMain().bet(bettingAmount);
-		balanceField.setText("Bank: $" + getBlackJackMain().showBalance());
+		blackJackMain.bet(bettingAmount);
+		balanceField.setText("Bank: $" + blackJackMain.showBalance());
 		betField.setText("Bet: " + bettingAmount + " ,-");
 	}
 
 	@FXML
 	public void bet200buttonOnAction() {
 		double bettingAmount = 200; 
-		getBlackJackMain().bet(bettingAmount);
-		balanceField.setText("Saldo: $" + getBlackJackMain().showBalance());
+		blackJackMain.bet(bettingAmount);
+		balanceField.setText("Saldo: $" + blackJackMain.showBalance());
 		betField.setText("Sats: " + bettingAmount + " ,-");
 	}
 
 	
 	@FXML
 	public void hitButtonOnAction() {
-		getBlackJackMain().drawCard();
+		blackJackMain.drawCard();
 		
 		if (firstCard.getImage() == null) {
-			firstCard.setImage(getBlackJackMain().getCardImage(getBlackJackMain().getLastCardInHandDealer()));
+			firstCard.setImage(blackJackMain.getCardImage(blackJackMain.getLastCardInHandDealer()));
 		} 
 		else if (secondCard.getImage() == null) {
-			secondCard.setImage(getBlackJackMain().getCardImage(getBlackJackMain().getLastCardInHandDealer()));
+			secondCard.setImage(blackJackMain.getCardImage(blackJackMain.getLastCardInHandDealer()));
 		}
 		else {
-			thirdCard.setImage(getBlackJackMain().getCardImage(getBlackJackMain().getLastCardInHandDealer()));
+			thirdCard.setImage(blackJackMain.getCardImage(blackJackMain.getLastCardInHandDealer()));
 		}
 		
-		int playerHandValue = getBlackJackMain().getPlayer().getHandValue();
+		int playerHandValue = blackJackMain.getPlayer().getHandValue();
 		playerTotal.setText("Your Hand: " + playerHandValue);
 
-		if (getBlackJackMain().hasBlackJack()) {
+		if (blackJackMain.hasBlackJack()) {
 			blackjack();
 		}
 		else {
@@ -78,11 +80,11 @@ public class GamePageController extends StartPageController {
 	public void standButtonOnAction() {
 		dealForDealer();
 		
-		if (getBlackJackMain().dealerWins()) {
+		if (blackJackMain.dealerWins()) {
 			endText.setText("HUSET VANT");
 			activateAvailableButtons();
 		} 
-		else if (getBlackJackMain().isTie()) {
+		else if (blackJackMain.isTie()) {
 			endText.setText("UAVGJORT");
 		}
 		else {
@@ -92,22 +94,22 @@ public class GamePageController extends StartPageController {
 
 	public void dealForDealer() {
 		
-		while (getBlackJackMain().drawCardDealer() != null); {
+		while (blackJackMain.drawCardDealer() != null); {
 		
 			if (dealerFirstCard.getImage() == null) {
-				dealerFirstCard.setImage(getBlackJackMain().getCardImage(getBlackJackMain().getLastCardInHandDealer()));
+				dealerFirstCard.setImage(blackJackMain.getCardImage(blackJackMain.getLastCardInHandDealer()));
 			} 
 			else if (dealerSecondCard.getImage() == null) {
-				dealerSecondCard.setImage(getBlackJackMain().getCardImage(getBlackJackMain().getLastCardInHandDealer()));
+				dealerSecondCard.setImage(blackJackMain.getCardImage(blackJackMain.getLastCardInHandDealer()));
 			}
 			else {
-				dealerThirdCard.setImage(getBlackJackMain().getCardImage(getBlackJackMain().getLastCardInHandDealer()));
+				dealerThirdCard.setImage(blackJackMain.getCardImage(blackJackMain.getLastCardInHandDealer()));
 			}
 			
-			int playerHandValue = getBlackJackMain().getPlayer().getHandValue();
+			int playerHandValue = blackJackMain.getPlayer().getHandValue();
 			playerTotal.setText("Your Hand: " + playerHandValue);
 	
-			if (getBlackJackMain().hasBlackJack()) {
+			if (blackJackMain.hasBlackJack()) {
 				blackjack();
 			}
 			else {
@@ -119,10 +121,10 @@ public class GamePageController extends StartPageController {
 		
 	public void blackjack() {
 		dealForDealer();
-		if (getBlackJackMain().hasBlackJack() && getBlackJackMain().hasBlackJackDealer()) {
+		if (blackJackMain.hasBlackJack() && blackJackMain.hasBlackJackDealer()) {
 			endText.setText("UAVGJORT");
 		}
-		else if (getBlackJackMain().isBustDealer()) {
+		else if (blackJackMain.isBustDealer()) {
 			endText.setText("BLACKJACK");
 		}
 	}
@@ -133,7 +135,7 @@ public class GamePageController extends StartPageController {
 			
 	public void resetGame() {
 		endText.setText(null);
-		double balance = getBlackJackMain().getPlayer().getBalance();
+		double balance = blackJackMain.getPlayer().getBalance();
 		
 		if (balance == 0) {
 			disableAll();
@@ -167,7 +169,7 @@ public class GamePageController extends StartPageController {
 	@FXML
 	public void activateAvailableButtons() {
 		
-		double balance = Double.parseDouble(getBlackJackMain().showBalance());
+		double balance = Double.parseDouble(blackJackMain.showBalance());
 	
 		if (balance < 200 && !bet200Button.isDisable()) {
 			bet200Button.setDisable(true);

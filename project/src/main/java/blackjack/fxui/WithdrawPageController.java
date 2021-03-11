@@ -2,6 +2,7 @@ package blackjack.fxui;
 
 import java.io.IOException;
 
+import blackjack.model.BlackJackMain;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class WithdrawPageController extends StartPageController {
+public class WithdrawPageController {
+	
+	private BlackJackMain blackJackMain;
 	
 	@FXML private TextField withdrawAmountTextField;
 	@FXML private Button confirmButton;
@@ -20,7 +23,7 @@ public class WithdrawPageController extends StartPageController {
 	@FXML
 	public void confirmButtonOnAction(ActionEvent event) throws IOException {
 		double withdrawAmount = Double.parseDouble(withdrawAmountTextField.getText());
-		getBlackJackMain().getPlayer().withdraw(withdrawAmount);
+		blackJackMain.getPlayer().withdraw(withdrawAmount);
 		
 		
 		Parent menuParent = FXMLLoader.load(getClass().getResource("MenuPage.fxml"));
