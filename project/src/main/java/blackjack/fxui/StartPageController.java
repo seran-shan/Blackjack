@@ -35,13 +35,14 @@ public class StartPageController {
 	
 	public void initialize(BlackJackMain blackJackMain) {
 		this.blackJackMain = blackJackMain;
-	
-		if ( genderChoiceBox != null) {
-		genderChoiceBox.getItems().add("Mann");
-		genderChoiceBox.getItems().add("Dame");
-		genderChoiceBox.getItems().add("Udefinert");
-		genderChoiceBox.setValue("Mann");
-		}}
+		
+		if (genderChoiceBox != null) {
+			genderChoiceBox.getItems().add("Mann");
+			genderChoiceBox.getItems().add("Dame");
+			genderChoiceBox.getItems().add("Udefinert");
+			genderChoiceBox.setValue("Mann");
+		}
+	}
 	
 	/**
 	 * Skal bytte scene til menyen

@@ -1,10 +1,42 @@
 package blackjack.fxui;
 
+import java.io.IOException;
+
 import blackjack.model.BlackJackMain;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class MainController {
+	
+	@FXML private StartPageController startPageController;
+	@FXML private MenuPageController menuPageController;
+	@FXML private DepositPageController depositPageController;
+	@FXML private WithdrawPageController withdrawPageController;
+	@FXML private GamePageController gamePageController;
+	@FXML private Button loginRegButton;
+	
 
-	@FXML private 
+	private BlackJackMain blackJackMain;
 
+	public void initialize() {
+		startPageController.initialize(blackJackMain);
+		depositPageController.initialize(blackJackMain);
+		withdrawPageController.initialize(blackJackMain);
+		gamePageController.initialize(blackJackMain);
+	}
+	
+	public void loginRegButtonOnAction(ActionEvent event) throws IOException {
+		Parent menuParent = FXMLLoader.load(getClass().getResource("StartPage.fxml"));
+		Scene menuScene = new Scene(menuParent);
+		
+		Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
+		window.setScene(menuScene);
+		window.show();
+	}
 }

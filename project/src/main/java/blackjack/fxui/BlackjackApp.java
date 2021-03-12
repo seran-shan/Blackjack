@@ -11,7 +11,7 @@ public class BlackjackApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("StartPage.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
 
         primaryStage.setTitle("BlackJack");
         primaryStage.setScene(new Scene(parent));
