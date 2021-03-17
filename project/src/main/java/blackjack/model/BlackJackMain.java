@@ -1,6 +1,10 @@
 package blackjack.model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 import javafx.scene.image.Image;
 
@@ -8,18 +12,28 @@ public class BlackJackMain {
 	private CardDeck deck;
     private Dealer dealer;
     private Player player; 
+	private String userInfoPath = "src/main/resources/blackjack/fxui/userinfo/BlackJackUsers.txt";
 
-    public BlackJackMain(String firstName, String lastName, String userName, String password, String email, LocalDate birthday, String string, double balance) {
+    public BlackJackMain(String firstName, String lastName, String userName, String password, String email, LocalDate birthday, String gender, double balance) {
         deck = new CardDeck();
         dealer = new Dealer(deck);
-        player = new Player(firstName, lastName, userName, password, email, birthday, string, balance, deck);
+        player = new Player(firstName, lastName, userName, password, email, birthday, gender, balance, deck);
+		writeToFile(userInfoPath);
     }
     
-    public BlackJackMain(String userName, String password, CardDeck deck) {
+    public BlackJackMain(String username, String password, CardDeck deck) {
         deck = new CardDeck();
         dealer = new Dealer(deck);
-        player = new Player(userName, password, deck);
+        player = new Player(username, password, deck);
+		try {
+			checkIfUserExist(username, password, userInfoPath);
+		} catch (FileNotFoundException e) {
+			System.out.println("Filen eksisterer ikke");
+			e.printStackTrace();
+		}
     }
+
+	public BlackJackMain() {}
     
     public void withdrawMoneyFromAccount(String amount) {
     	Double amountDouble = Double.parseDouble(amount);
@@ -148,5 +162,39 @@ public class BlackJackMain {
 			return true;
 		}
 		return false;
+	}
+
+	public void writeToFile(String filename) {
+		try {
+			PrintWriter printWriter = new PrintWriter(filename);
+			printWriter.println(getPlayer());
+			printWriter.flush();
+			printWriter.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public boolean checkIfUserExist(String username, String password, String filename) throws FileNotFoundException {
+		Scanner scanner = new Scanner(new File(filename));
+		String[] lineInfo = null;
+		while(scanner.hasNextLine()) {
+			String line = scanner.nextLine();
+			lineInfo = line.split("\'");
+			scanner.close();
+		}
+		
+		String checkUsername = lineInfo[3];
+		String checkPassword = lineInfo[5];
+
+		if (checkUsername.equals(username) && checkPassword.equals(password)) {
+			return true;
+		}
+		return false;
+	}
+
+	public static void main(String[] args) {
+		BlackJackMain blackJackMain = new BlackJackMain("Seran", "Shanmugathas", "seran26", "Ps!244", "seran@live.no", LocalDate.of(2001, 8, 26), "Mann", 200);
+		System.out.println(blackJackMain.getPlayer());
 	}
 }

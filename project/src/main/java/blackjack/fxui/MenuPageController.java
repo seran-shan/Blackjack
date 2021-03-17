@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public class MenuPageController {
 	
 	@FXML private Button gameButton, depositButton, withdrawButton, exitButton;
-	
+
 	/**
 	 * Skal bytte scene til menyen
 	 * @param event

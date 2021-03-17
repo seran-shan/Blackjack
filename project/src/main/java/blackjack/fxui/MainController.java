@@ -1,6 +1,7 @@
 package blackjack.fxui;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import blackjack.model.BlackJackMain;
 import javafx.event.ActionEvent;
@@ -15,7 +16,6 @@ import javafx.stage.Stage;
 public class MainController {
 	
 	@FXML private StartPageController startPageController;
-	@FXML private MenuPageController menuPageController;
 	@FXML private DepositPageController depositPageController;
 	@FXML private WithdrawPageController withdrawPageController;
 	@FXML private GamePageController gamePageController;
@@ -25,12 +25,14 @@ public class MainController {
 	private BlackJackMain blackJackMain;
 
 	public void initialize() {
+		blackJackMain = new BlackJackMain("Sander", "Shawn", "sora21", "Pss3!", "sera@live.no", LocalDate.of(2001, 8, 26), "Mann", 200);
 		startPageController.initialize(blackJackMain);
 		depositPageController.initialize(blackJackMain);
 		withdrawPageController.initialize(blackJackMain);
 		gamePageController.initialize(blackJackMain);
 	}
 	
+	@FXML
 	public void loginRegButtonOnAction(ActionEvent event) throws IOException {
 		Parent menuParent = FXMLLoader.load(getClass().getResource("StartPage.fxml"));
 		Scene menuScene = new Scene(menuParent);

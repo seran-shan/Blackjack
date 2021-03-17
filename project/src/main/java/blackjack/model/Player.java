@@ -1,28 +1,117 @@
 package blackjack.model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.IllegalArgumentException;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Player extends Hand {
+	private String firstname;
+	private String lastname;
+	private String email;
+	private String username;
+	private String password;
+	private LocalDate birthday;
+	private String gender;
 	private double balance;
-	private Person person;
 
-	public Player(String firstname, String lastname, String userName, String password, String email, LocalDate birthday, String gender, double balance, CardDeck deck) {
+	/**
+	 * @param deck
+	 * @param firstname
+	 * @param lastname
+	 * @param email
+	 * @param username
+	 * @param password
+	 * @param birthday
+	 * @param gender
+	 * @param balance
+	 */
+	public Player(CardDeck deck, String firstname, String lastname, String email, String username, String password,
+			LocalDate birthday, String gender, double balance) {
 		super(deck);
-		this.balance = balance;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.birthday = birthday;
+		this.gender = gender;
 		if (!isValidBalance()) {
-			throw new IllegalArgumentException("Kan ikke være negativt beløp!");
+			throw new IllegalArgumentException("Saldoen kan ikke være negativ");
 		}
-		this.person = new Person(firstname, lastname, userName, password, email, birthday, gender);
+		this.balance = balance;
 	}
 	
-	public Player(String userName, String password, CardDeck deck) {
+	public Player(String username, String password, CardDeck deck) {
 		super(deck);
+		this.username = username;
+		this.password = password;
+		try {
+			this.balance = getBalanceExisistingPlayer();
+		} catch (FileNotFoundException e) {
+			System.out.println("Fant ikke filen");
+			e.printStackTrace();
+		}
 	}
 
-	public String getUserName() {
-		return person.getUsername();
+
+	/**
+	 * @return the firstname
+	 */
+	public String getFirstname() {
+		return firstname;
 	}
+
+	/**
+	 * @return the lastname
+	 */
+	public String getLastname() {
+		return lastname;
+	}
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @return the birthday
+	 */
+	public LocalDate getBirthday() {
+		return birthday;
+	}
+
+	/**
+	 * @return the gender
+	 */
+	public String getGender() {
+		return gender;
+	}
+
+	/**
+	 * @return the balance
+	 */
+	public double getBalance() {
+		return balance;
+	}
+
+	
 	
 	public boolean isBlackJack() {
 		if(getHandValue() == BLACK_JACK) 
@@ -31,9 +120,25 @@ public class Player extends Hand {
 		else 
 			return false;
 	}
-	
-	public double getBalance() {
-		return balance;
+
+	public Double getBalanceExisistingPlayer() throws FileNotFoundException {
+		String userInfoPath = "src/main/resources/blackjack/fxui/userinfo/BlackJackUsers.txt";
+		Scanner scanner = new Scanner(new File(userInfoPath));
+		String[] lineInfo = null;
+		while(scanner.hasNextLine()) {
+			String line = scanner.nextLine();
+			lineInfo = line.split("\'");
+			scanner.close();
+		}
+
+		String checkUsername = lineInfo[3];
+		String checkPassword = lineInfo[5];
+
+		if (checkUsername.equals(getUsername()) && checkPassword.equals(getPassword())) {
+			String balance = lineInfo[13];
+			return Double.parseDouble(balance);
+		}
+		return null;
 	}
 	
 	public void deposit(double depositAmpount) {
@@ -51,7 +156,6 @@ public class Player extends Hand {
 			balance += withdrawAmount;
 			throw new IllegalArgumentException("Beløpet overskrider saldoen!");
 		}
-		
 	}
 	
 	private boolean isValidBalance() {
@@ -61,8 +165,15 @@ public class Player extends Hand {
 	}
 	
 	@Override
-	public String toString() {
-		System.out.println(getUserName());
-		return super.toString();
+	public java.lang.String toString() {
+		return "User{" +
+				"Name='" + getFirstname() + " " + getLastname() + '\'' +
+				", username='" + getUsername() + '\'' +
+				", password='" + getPassword() + '\'' +
+				", email='" + getEmail() + '\'' +
+				", birthday=" + getBirthday() + '\'' +
+				", gender='" + getGender() + '\'' +
+				", balance='" + getBalance() + '\'' +
+				'}';
 	}
 }

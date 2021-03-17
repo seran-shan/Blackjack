@@ -22,8 +22,6 @@ import javafx.stage.Stage;
 public class StartPageController {
 	
 	private BlackJackMain blackJackMain;
-	
-	ObservableList<String> valigGender = FXCollections.observableArrayList("Mann", "Dame", "Udefinert");
 
 	@FXML private Button loginButton, regButton;
 	@FXML private TextField usernameLoginField, passwordLoginField, firstnameRegField, 
@@ -36,13 +34,15 @@ public class StartPageController {
 	public void initialize(BlackJackMain blackJackMain) {
 		this.blackJackMain = blackJackMain;
 		
+		
+		ObservableList<String> valigGender = FXCollections.observableArrayList("Mann", "Dame", "Udefinert");
 		if (genderChoiceBox != null) {
 			genderChoiceBox.getItems().add("Mann");
 			genderChoiceBox.getItems().add("Dame");
 			genderChoiceBox.getItems().add("Udefinert");
 			genderChoiceBox.setValue("Mann");
 		}
-	}
+	} 
 	
 	/**
 	 * Skal bytte scene til menyen
@@ -108,9 +108,5 @@ public class StartPageController {
 				window.show();
 				
 			}
-	}
-
-	public BlackJackMain getBlackJackMain() {
-		return blackJackMain;
 	}
 }

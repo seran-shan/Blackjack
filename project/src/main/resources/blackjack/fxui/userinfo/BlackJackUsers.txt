@@ -1,0 +1,1 @@
+User{Name='Seran Shanmugathas', username='seran26', password='Ps!244', email='seran@live.no', birthday=2001-08-26', gender='Mann', balance='200.0'}

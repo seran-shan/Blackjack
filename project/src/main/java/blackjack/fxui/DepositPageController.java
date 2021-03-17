@@ -20,6 +20,7 @@ public class DepositPageController{
 	@FXML private TextField depositAmountTextField;
 	@FXML private Button confirmButton;
 	
+	
 	public void initialize(BlackJackMain blackJackMain) {
 		this.blackJackMain = blackJackMain;
 	}
