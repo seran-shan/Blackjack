@@ -14,21 +14,27 @@ public class BlackJackMain {
     private Player player; 
 	private String userInfoPath = "src/main/resources/blackjack/fxui/userinfo/BlackJackUsers.txt";
 
-    public BlackJackMain(String firstName, String lastName, String userName, String password, String email, LocalDate birthday, String gender, double balance) {
+    public BlackJackMain(String firstName, String lastName, String username, String password, String email, LocalDate birthday, String gender, double balance) {
         deck = new CardDeck();
         dealer = new Dealer(deck);
-        player = new Player(firstName, lastName, userName, password, email, birthday, gender, balance, deck);
+        player = new Player(deck, firstName, lastName, username, password, email, birthday, gender, balance);
 		writeToFile(userInfoPath);
     }
     
     public BlackJackMain(String username, String password, CardDeck deck) {
         deck = new CardDeck();
         dealer = new Dealer(deck);
-        player = new Player(username, password, deck);
+ 
 		try {
-			checkIfUserExist(username, password, userInfoPath);
+			if(!checkIfUserExist(username, password, userInfoPath)) {
+				throw new IllegalAccessException("Feil");
+			}
+			else {
+				player = new Player(username, password, deck);
+			}
 		} catch (FileNotFoundException e) {
-			System.out.println("Filen eksisterer ikke");
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
     }
@@ -195,6 +201,24 @@ public class BlackJackMain {
 
 	public static void main(String[] args) {
 		BlackJackMain blackJackMain = new BlackJackMain("Seran", "Shanmugathas", "seran26", "Ps!244", "seran@live.no", LocalDate.of(2001, 8, 26), "Mann", 200);
-		System.out.println(blackJackMain.getPlayer());
+		
+		try {
+			Scanner scanner = new Scanner(new File(blackJackMain.userInfoPath));
+			String[] lineInfo = {};
+			while(scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				lineInfo = line.split("\'");
+			}
+			scanner.close();
+
+			String checkUsername = lineInfo[3];
+			String checkPassword = lineInfo[5];
+
+			System.out.println(checkUsername);
+			System.out.println(checkPassword);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

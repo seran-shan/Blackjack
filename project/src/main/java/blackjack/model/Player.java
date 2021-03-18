@@ -7,34 +7,34 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Player extends Hand {
-	private String firstname;
-	private String lastname;
-	private String email;
+	private String firstName;
+	private String lastName;
 	private String username;
 	private String password;
+	private String email;
 	private LocalDate birthday;
 	private String gender;
 	private double balance;
 
 	/**
 	 * @param deck
-	 * @param firstname
-	 * @param lastname
-	 * @param email
+	 * @param firstName
+	 * @param lastName
 	 * @param username
 	 * @param password
+	 * @param email
 	 * @param birthday
 	 * @param gender
 	 * @param balance
 	 */
-	public Player(CardDeck deck, String firstname, String lastname, String email, String username, String password,
+	public Player(CardDeck deck, String firstName, String lastName, String username, String password, String email,
 			LocalDate birthday, String gender, double balance) {
 		super(deck);
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
+		this.email = email;
 		this.birthday = birthday;
 		this.gender = gender;
 		if (!isValidBalance()) {
@@ -60,14 +60,14 @@ public class Player extends Hand {
 	 * @return the firstname
 	 */
 	public String getFirstname() {
-		return firstname;
+		return firstName;
 	}
 
 	/**
 	 * @return the lastname
 	 */
 	public String getLastname() {
-		return lastname;
+		return lastName;
 	}
 	/**
 	 * @return the email
@@ -159,7 +159,7 @@ public class Player extends Hand {
 	}
 	
 	private boolean isValidBalance() {
-		if (balance > 0) {
+		if (balance >= 0) {
 			return true;
 		} return false;
 	}
