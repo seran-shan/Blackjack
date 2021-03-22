@@ -17,8 +17,8 @@ public class GamePageController{
 	@FXML private Text dealerTotal, playerTotal, endText;
 	@FXML private ImageView firstCard, secondCard, thirdCard, 
 							dealerFirstCard, dealerSecondCard, dealerThirdCard;
-	
-	public void initialize(BlackJackMain blackJackMain) {
+
+	public void setBlackJackMain(BlackJackMain blackJackMain) {
 		this.blackJackMain = blackJackMain;
 	}
 

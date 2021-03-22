@@ -21,19 +21,30 @@ public class DepositPageController{
 	@FXML private Button confirmButton;
 	
 	
-	public void initialize(BlackJackMain blackJackMain) {
+	public void setBlackJackMain(BlackJackMain blackJackMain) {
 		this.blackJackMain = blackJackMain;
 	}
 	
 	@FXML
 	public void confirmButtonOnAction(ActionEvent event) throws IOException {
-		double withdrawAmount = Double.parseDouble(depositAmountTextField.getText());
-		blackJackMain.getPlayer().withdraw(withdrawAmount);
+
+		double depositAmount = Double.parseDouble(depositAmountTextField.getText());
+		blackJackMain.getPlayer().deposit(depositAmount);
 		
+		// Parent menuParent = FXMLLoader.load(getClass().getResource("MenuPage.fxml"));
+		// Scene menuScene = new Scene(menuParent);
 		
-		Parent menuParent = FXMLLoader.load(getClass().getResource("MenuPage.fxml"));
-		Scene menuScene = new Scene(menuParent);
-		
+		// Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
+		// window.setScene(menuScene);
+		// window.show();
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPage.fxml"));
+		Parent root = (Parent) loader.load();
+
+		MenuPageController menuPageController = loader.getController();
+		menuPageController.setBlackJackMain(blackJackMain);
+
+		Scene menuScene = new Scene(root);
 		Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
 		window.setScene(menuScene);
 		window.show();

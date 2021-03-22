@@ -128,8 +128,8 @@ public class Player extends Hand {
 		while(scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			lineInfo = line.split("\'");
-			scanner.close();
 		}
+		scanner.close();
 
 		String checkUsername = lineInfo[3];
 		String checkPassword = lineInfo[5];
@@ -171,7 +171,7 @@ public class Player extends Hand {
 				", username='" + getUsername() + '\'' +
 				", password='" + getPassword() + '\'' +
 				", email='" + getEmail() + '\'' +
-				", birthday=" + getBirthday() + '\'' +
+				", birthday='" + getBirthday() + '\'' +
 				", gender='" + getGender() + '\'' +
 				", balance='" + getBalance() + '\'' +
 				'}';

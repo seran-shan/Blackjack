@@ -21,25 +21,23 @@ public class BlackJackMain {
 		writeToFile(userInfoPath);
     }
     
-    public BlackJackMain(String username, String password, CardDeck deck) {
+    public BlackJackMain(String username, String password) {
         deck = new CardDeck();
         dealer = new Dealer(deck);
  
 		try {
-			if(!checkIfUserExist(username, password, userInfoPath)) {
-				throw new IllegalAccessException("Feil");
+			if(checkIfUserExist(username, password, userInfoPath)) {
+				player = new Player(username, password, deck);
 			}
 			else {
-				player = new Player(username, password, deck);
+				System.out.println("Bruker eksiterer ikke");
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+		} catch (IllegalArgumentException iae) {
+			iae.printStackTrace();
 		}
     }
-
-	public BlackJackMain() {}
     
     public void withdrawMoneyFromAccount(String amount) {
     	Double amountDouble = Double.parseDouble(amount);
@@ -187,8 +185,8 @@ public class BlackJackMain {
 		while(scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			lineInfo = line.split("\'");
-			scanner.close();
 		}
+		scanner.close();
 		
 		String checkUsername = lineInfo[3];
 		String checkPassword = lineInfo[5];
@@ -200,25 +198,28 @@ public class BlackJackMain {
 	}
 
 	public static void main(String[] args) {
-		BlackJackMain blackJackMain = new BlackJackMain("Seran", "Shanmugathas", "seran26", "Ps!244", "seran@live.no", LocalDate.of(2001, 8, 26), "Mann", 200);
-		
-		try {
-			Scanner scanner = new Scanner(new File(blackJackMain.userInfoPath));
-			String[] lineInfo = {};
-			while(scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				lineInfo = line.split("\'");
-			}
-			scanner.close();
 
-			String checkUsername = lineInfo[3];
-			String checkPassword = lineInfo[5];
+		BlackJackMain blackJackMain = new BlackJackMain("seran26", "Ps!244");
 
-			System.out.println(checkUsername);
-			System.out.println(checkPassword);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println(blackJackMain.getPlayer().getBalance());
+
+		// try {
+		// 	Scanner scanner = new Scanner(new File("src/main/resources/blackjack/fxui/userinfo/BlackJackUsers.txt"));
+		// 	String[] lineInfo = {};
+		// 	while(scanner.hasNextLine()) {
+		// 		String line = scanner.nextLine();
+		// 		lineInfo = line.split("\'");
+		// 	}
+		// 	scanner.close();
+
+		// 	String checkUsername = lineInfo[3];
+		// 	String checkPassword = lineInfo[5];
+
+		// 	System.out.println(checkUsername);
+		// 	System.out.println(checkPassword);
+		// } catch (FileNotFoundException e) {
+		// 	// TODO Auto-generated catch block
+		// 	e.printStackTrace();
+		// }
 	}
 }

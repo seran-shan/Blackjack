@@ -22,6 +22,11 @@ import javafx.stage.Stage;
 public class StartPageController {
 	
 	private BlackJackMain blackJackMain;
+	private static UserValidation userValidation = new UserValidation();
+
+	public void setBlackJackMain(BlackJackMain blackJackMain) {
+		this.blackJackMain = blackJackMain;
+	}
 
 	@FXML private Button loginButton, regButton;
 	@FXML private TextField usernameLoginField, passwordLoginField, firstnameRegField, 
@@ -30,11 +35,8 @@ public class StartPageController {
 	@FXML private DatePicker birthdayRegDatePicker;
 	@FXML private ChoiceBox<String> genderChoiceBox;
 	@FXML private Label errorMessageLabel;
-	
-	public void initialize(BlackJackMain blackJackMain) {
-		this.blackJackMain = blackJackMain;
-		
-		
+
+	public void initialize() {
 		ObservableList<String> valigGender = FXCollections.observableArrayList("Mann", "Dame", "Udefinert");
 		if (genderChoiceBox != null) {
 			genderChoiceBox.getItems().add("Mann");
@@ -51,18 +53,32 @@ public class StartPageController {
 	 */
 	@FXML
 	public void loginButtonOnAction(ActionEvent event) throws IOException {
-		Parent menuParent = FXMLLoader.load(getClass().getResource("MenuPage.fxml"));
-		Scene menuScene = new Scene(menuParent);
 		
-		Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
-		window.setScene(menuScene);
-		window.show();
+		if (!userValidation.validateUsername(usernameLoginField.getText())) {
+		      errorMessageLabel.setText("Fornavn må bestå av bokstaver");
+		    } 
+			else if (!userValidation.validatePassword(passwordLoginField.getText())) {
+				errorMessageLabel.setText("Etternavn må bestå av bokstaver");
+		    } 
+			else {
+				blackJackMain = new BlackJackMain(usernameRegField.getText(),
+												  passwordRegField.getText());
+
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPage.fxml"));
+				Parent root = (Parent) loader.load();
+		
+				MenuPageController menuPageController = loader.getController();
+				menuPageController.setBlackJackMain(blackJackMain);
+		
+				Scene menuScene = new Scene(root);
+				Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
+				window.setScene(menuScene);
+				window.show();
+			}
 	}
 	
 	@FXML
 	public void regButtonOnAction(ActionEvent event) throws IOException {
-		
-		UserValidation userValidation = new UserValidation();
 		
 		if (!userValidation.validateFirstName(firstnameRegField.getText())) {
 		      errorMessageLabel.setText("Fornavn må bestå av bokstaver");
@@ -89,8 +105,6 @@ public class StartPageController {
 				errorMessageLabel.setText("Legg inn bursdagen din");
 			}
 			else {
-				errorMessageLabel.setText("Oppretter konto");
-				
 				blackJackMain = new BlackJackMain(firstnameRegField.getText(), 
 												  lastNameRegField.getText(), 
 												  usernameRegField.getText(),
@@ -100,13 +114,23 @@ public class StartPageController {
 												  genderChoiceBox.getValue(),
 												  Double.parseDouble(balanceRegField.getText()));
 				
-				Parent menuParent = FXMLLoader.load(getClass().getResource("MenuPage.fxml"));
-				Scene menuScene = new Scene(menuParent);
+				// Parent menuParent = FXMLLoader.load(getClass().getResource("MenuPage.fxml"));
+				// Scene menuScene = new Scene(menuParent);
 				
+				// Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
+				// window.setScene(menuScene);
+				// window.show();
+
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPage.fxml"));
+				Parent root = (Parent) loader.load();
+		
+				MenuPageController menuPageController = loader.getController();
+				menuPageController.setBlackJackMain(blackJackMain);
+		
+				Scene menuScene = new Scene(root);
 				Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
 				window.setScene(menuScene);
 				window.show();
-				
 			}
 	}
 }

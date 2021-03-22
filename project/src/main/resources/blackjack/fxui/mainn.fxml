@@ -10,12 +10,12 @@
         <tabs>
           <Tab text="Tab 1">
                <content>
-                  <fx:include fx:id="startPage" source="StartPage.fxml" />
+                  <fx:include fx:id="tab1" source="tab1.fxml" />
                </content>
           </Tab>
           <Tab text="Tab 2">
                <content>
-                  <fx:include fx:id="menuPage" source="MenuPage.fxml" />
+                  <fx:include fx:id="tab2" source="tab2.fxml" />
                </content></Tab>
         </tabs>
       </TabPane>
