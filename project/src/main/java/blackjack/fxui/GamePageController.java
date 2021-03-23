@@ -23,6 +23,12 @@ public class GamePageController{
 	}
 
 	@FXML
+	public void initialize() {
+		disableAll();
+		activateAvailableButtons();
+	}
+
+	@FXML
 	public void bet20buttonOnAction() {
 		double bettingAmount = 20; 
 		blackJackMain.bet(bettingAmount);
@@ -157,6 +163,7 @@ public class GamePageController{
 		startButton.setDisable(true);
 		hitButton.setDisable(true);
 		standButton.setDisable(true);
+		resetButton.setDisable(true);
 	}
 	
 	@FXML
@@ -167,6 +174,7 @@ public class GamePageController{
 		startButton.setDisable(false);
 		hitButton.setDisable(false);
 		standButton.setDisable(false);
+		resetButton.setDisable(false);
 	}
 	
 	@FXML
@@ -186,9 +194,10 @@ public class GamePageController{
 		if (!startButton.isDisable()) {
 			hitButton.setDisable(true);
 			standButton.setDisable(true);
+			resetButton.setDisable(false);
 		}
-		if (hitButton.isDisable() && standButton.isDisable()) {
-			startButton.setDisable(false);
-		}
+		// if (hitButton.isDisable() && standButton.isDisable()) {
+		// 	startButton.setDisable(false);
+		// }
 	}
 }

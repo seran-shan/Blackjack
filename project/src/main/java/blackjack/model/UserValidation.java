@@ -1,8 +1,11 @@
 package blackjack.model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class UserValidation {
 
@@ -87,5 +90,23 @@ public class UserValidation {
 	public boolean validateBalance(String balance) {;
 		return balance.matches("[0-9]{1,}");
 	}
-	
+
+	public boolean checkIfUserExist(String username, String password) throws FileNotFoundException {
+		String userInfoPath = "src/main/resources/blackjack/fxui/userinfo/BlackJackUsers.txt";
+		Scanner scanner = new Scanner(new File(userInfoPath));
+		String[] lineInfo = null;
+		while(scanner.hasNextLine()) {
+			String line = scanner.nextLine();
+			lineInfo = line.split("\'");
+		}
+		scanner.close();
+		
+		String checkUsername = lineInfo[3];
+		String checkPassword = lineInfo[5];
+
+		if (checkUsername.equalsIgnoreCase(username) && checkPassword.equals(password)) {
+			return true;
+		}
+		return false;
+	}
 }

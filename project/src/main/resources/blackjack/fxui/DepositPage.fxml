@@ -5,15 +5,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="403.0" prefWidth="600.0" style="-fx-background-color: #006D5B;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackjack.fxui.DepositPageController">
+<AnchorPane prefHeight="403.0" prefWidth="600.0" style="-fx-background-color: #F0F0F0;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackjack.fxui.DepositPageController">
    <children>
       <Label alignment="CENTER" layoutX="186.0" layoutY="14.0" prefHeight="94.0" prefWidth="228.0" text="INNSKUDD">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="confirmButton" layoutX="347.0" layoutY="123.0" mnemonicParsing="false" onAction="#confirmButtonOnAction" style="-fx-background-radius: 0px;" text="Bekreft" />
-      <TextField fx:id="depositAmountTextField" layoutX="186.0" layoutY="123.0" style="-fx-background-color: white; -fx-background-radius: 0px;" />
+      <Button fx:id="confirmButton" layoutX="271.0" layoutY="170.0" mnemonicParsing="false" onAction="#confirmButtonOnAction" style="-fx-background-radius: 0px;" text="Bekreft" />
+      <TextField fx:id="depositAmountTextField" alignment="CENTER" layoutX="225.0" layoutY="125.0" promptText="Tast inn ønsket beløp" />
+      <Text fx:id="errorMessageLabel" fill="#bf2a2a" layoutX="128.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="346.9830722808838" />
    </children>
 </AnchorPane>

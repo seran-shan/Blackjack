@@ -24,19 +24,7 @@ public class BlackJackMain {
     public BlackJackMain(String username, String password) {
         deck = new CardDeck();
         dealer = new Dealer(deck);
- 
-		try {
-			if(checkIfUserExist(username, password, userInfoPath)) {
-				player = new Player(username, password, deck);
-			}
-			else {
-				System.out.println("Bruker eksiterer ikke");
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException iae) {
-			iae.printStackTrace();
-		}
+		player = new Player(username, password, deck);
     }
     
     public void withdrawMoneyFromAccount(String amount) {
@@ -96,6 +84,13 @@ public class BlackJackMain {
     public CardDeck getDeck() {
 	    return deck;
     }
+
+	/**
+	 * @return the userInfoPath
+	 */
+	public String getUserInfoPath() {
+		return userInfoPath;
+	}
     
     public int getPlayerHandValue() {
 		return getPlayer().getHandValue();
@@ -191,7 +186,7 @@ public class BlackJackMain {
 		String checkUsername = lineInfo[3];
 		String checkPassword = lineInfo[5];
 
-		if (checkUsername.equals(username) && checkPassword.equals(password)) {
+		if (checkUsername.equalsIgnoreCase(username) && checkPassword.equals(password)) {
 			return true;
 		}
 		return false;
