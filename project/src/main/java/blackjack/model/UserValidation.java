@@ -42,11 +42,11 @@ public class UserValidation {
 		
 		List<String> list = Arrays.asList(countryCodes);
 		
-		if (emailToValidate.matches("^([a-åA-Å0-9]{2,})@([a-åA-Å0-9]{1,})\\.([a-åA-Å]{2,})$")) {
+		if (emailToValidate.matches("[A-Å0-9a-å._]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")) {
 			String[] mailSplitted = emailToValidate.split("[\\.@]");
 			//String aliasMail = mailSplitted[0];
 			//String domain = mailSplitted[1];
-			String countryCode = mailSplitted[2];
+			String countryCode = mailSplitted[mailSplitted.length - 1];
 			
 			if (list.contains(countryCode)) {
 				return true;
@@ -97,16 +97,17 @@ public class UserValidation {
 		String[] lineInfo = null;
 		while(scanner.hasNextLine()) {
 			String line = scanner.nextLine();
-			lineInfo = line.split("\'");
+			lineInfo = line.split(",");
+			String checkUsername = lineInfo[2];
+			String checkPassword = lineInfo[3];
+
+			if (checkUsername.equalsIgnoreCase(username) && checkPassword.equals(password)) {
+				scanner.close();
+				return true;
+		}
 		}
 		scanner.close();
-		
-		String checkUsername = lineInfo[3];
-		String checkPassword = lineInfo[5];
-
-		if (checkUsername.equalsIgnoreCase(username) && checkPassword.equals(password)) {
-			return true;
-		}
+	
 		return false;
 	}
 }

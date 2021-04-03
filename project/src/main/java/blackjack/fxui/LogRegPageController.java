@@ -2,7 +2,8 @@ package blackjack.fxui;
 
 import java.io.IOException;
 
-import blackjack.model.BlackJackMain;
+import blackjack.model.BlackJack;
+import blackjack.model.FileSupport;
 import blackjack.model.UserValidation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,13 +20,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class StartPageController {
+public class LogRegPageController {
 	
-	private BlackJackMain blackJackMain;
-	private static UserValidation userValidation = new UserValidation();
+	private BlackJack blackJack;
+	private UserValidation userValidation = new UserValidation();
+	private FileSupport fileSupport = new FileSupport();
 
-	public void setBlackJackMain(BlackJackMain blackJackMain) {
-		this.blackJackMain = blackJackMain;
+	public void setBlackJack(BlackJack blackJack) {
+		this.blackJack = blackJack;
 	}
 
 	@FXML private Button loginButton, regButton;
@@ -57,33 +59,25 @@ public class StartPageController {
 		String username = usernameLoginField.getText();
 		String password = passwordLoginField.getText();
 		
-		if (!userValidation.validateUsername(username)) {
-		      errorMessageLabel.setText("Fornavn må bestå av bokstaver");
-		    } 
-			else if (!userValidation.validatePassword(password)) {
-				errorMessageLabel.setText("Etternavn må bestå av bokstaver");
-		    } 
-			else {
+		if (fileSupport.checkIfUserExist(username, password)) {
+			blackJack = new BlackJack(username,
+									  password);
 
-				if (userValidation.checkIfUserExist(username, password)) {
-					blackJackMain = new BlackJackMain(username,
-													password);
-
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPage.fxml"));
-					Parent root = (Parent) loader.load();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPage.fxml"));
+			Parent root = (Parent) loader.load();
+	
+			MenuPageController menuPageController = loader.getController();
+			menuPageController.setBlackJack(blackJack);
+	
+			Scene menuScene = new Scene(root);
+			Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
+			window.setScene(menuScene);
+			window.show();
+		}
+		else {
+			errorMessageLabel.setText("Prøv igjen!");
+		}
 			
-					MenuPageController menuPageController = loader.getController();
-					menuPageController.setBlackJackMain(blackJackMain);
-			
-					Scene menuScene = new Scene(root);
-					Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
-					window.setScene(menuScene);
-					window.show();
-				}
-				else {
-					errorMessageLabel.setText("Brukernavn og passord stemmer ikke");
-				}
-			}
 	}
 	
 	@FXML
@@ -99,7 +93,8 @@ public class StartPageController {
 		    	errorMessageLabel.setText("Brukernavnet kan kun består av bokstaver og tall");
 			} 
 		    else if (!userValidation.validatePassword(passwordRegField.getText())) {
-		    	errorMessageLabel.setText("Passordet må bestå av minst et tall, en liten bokstav og en stor bokstav");
+		    	errorMessageLabel.setText("Passordet krever: \n" +
+		    						 	  "Et tall, en liten bokstav, og en stor bokstav");
 		    } 
 			else if (!userValidation.validateMail(emailRegField.getText())) {
 				errorMessageLabel.setText("Eposten er ugyldig");
@@ -114,32 +109,30 @@ public class StartPageController {
 				errorMessageLabel.setText("Legg inn bursdagen din");
 			}
 			else {
-				blackJackMain = new BlackJackMain(firstnameRegField.getText(), 
-												  lastNameRegField.getText(), 
-												  usernameRegField.getText(),
-												  passwordRegField.getText(),
-												  emailRegField.getText(),
-												  birthdayRegDatePicker.getValue(),
-												  genderChoiceBox.getValue(),
-												  Double.parseDouble(balanceRegField.getText()));
+				try {
+					blackJack = new BlackJack(firstnameRegField.getText(), 
+											  lastNameRegField.getText(), 
+											  usernameRegField.getText(),
+											  passwordRegField.getText(),
+											  emailRegField.getText(),
+											  birthdayRegDatePicker.getValue(),
+											  genderChoiceBox.getValue(),
+											  Double.parseDouble(balanceRegField.getText()));
+					if (blackJack != null) {
+						FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPage.fxml"));
+						Parent root = (Parent) loader.load();
 				
-				// Parent menuParent = FXMLLoader.load(getClass().getResource("MenuPage.fxml"));
-				// Scene menuScene = new Scene(menuParent);
+						MenuPageController menuPageController = loader.getController();
+						menuPageController.setBlackJack(blackJack);
 				
-				// Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
-				// window.setScene(menuScene);
-				// window.show();
-
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPage.fxml"));
-				Parent root = (Parent) loader.load();
-		
-				MenuPageController menuPageController = loader.getController();
-				menuPageController.setBlackJackMain(blackJackMain);
-		
-				Scene menuScene = new Scene(root);
-				Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
-				window.setScene(menuScene);
-				window.show();
+						Scene menuScene = new Scene(root);
+						Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
+						window.setScene(menuScene);
+						window.show();
+					}
+				} catch (Exception e) {
+					errorMessageLabel.setText(e.getMessage());;
+				}
 			}
 	}
 }

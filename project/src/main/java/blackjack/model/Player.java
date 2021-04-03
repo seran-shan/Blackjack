@@ -15,6 +15,7 @@ public class Player extends Hand {
 	private LocalDate birthday;
 	private String gender;
 	private double balance;
+	private double totalBettingAmount = 0;
 
 	/**
 	 * @param deck
@@ -37,7 +38,7 @@ public class Player extends Hand {
 		this.email = email;
 		this.birthday = birthday;
 		this.gender = gender;
-		if (!isValidBalance()) {
+		if (!isValidBalance(balance)) {
 			throw new IllegalArgumentException("Saldoen kan ikke være negativ");
 		}
 		this.balance = balance;
@@ -48,13 +49,12 @@ public class Player extends Hand {
 		this.username = username;
 		this.password = password;
 		try {
-			this.balance = getBalanceExisistingPlayer();
+			setExisistingPlayerInfo();
 		} catch (FileNotFoundException e) {
 			System.out.println("Fant ikke filen");
 			e.printStackTrace();
 		}
 	}
-
 
 	/**
 	 * @return the firstname
@@ -111,8 +111,20 @@ public class Player extends Hand {
 		return balance;
 	}
 
-	
-	
+	/**
+	 * @return the totalBettingAmount
+	 */
+	public double getTotalBettingAmount() {
+		return totalBettingAmount;
+	}
+
+	/**
+	 * @param totalBettingAmount the totalBettingAmount to set
+	 */
+	public void setTotalBettingAmount(double totalBettingAmount) {
+		this.totalBettingAmount = totalBettingAmount;
+	}
+
 	public boolean isBlackJack() {
 		if(getHandValue() == BLACK_JACK) 
 			return true;
@@ -121,29 +133,33 @@ public class Player extends Hand {
 			return false;
 	}
 
-	public Double getBalanceExisistingPlayer() throws FileNotFoundException {
+	public void setExisistingPlayerInfo() throws FileNotFoundException {
 		String userInfoPath = "src/main/resources/blackjack/fxui/userinfo/BlackJackUsers.txt";
 		Scanner scanner = new Scanner(new File(userInfoPath));
 		String[] lineInfo = null;
 		while(scanner.hasNextLine()) {
 			String line = scanner.nextLine();
-			lineInfo = line.split("\'");
+			lineInfo = line.split(",");
+
+			String checkUsername = lineInfo[2];
+			String checkPassword = lineInfo[3];
+
+			if (checkUsername.equals(getUsername()) && checkPassword.equals(getPassword())) {
+				this.firstName = lineInfo[1];
+				this.lastName = lineInfo[2];
+				this.email = lineInfo[4];
+				this.birthday = LocalDate.parse(lineInfo[5]);
+				this.gender = lineInfo[6];
+				this.balance = Double.parseDouble(lineInfo[7]);
+				break;
+			}
 		}
 		scanner.close();
-
-		String checkUsername = lineInfo[3];
-		String checkPassword = lineInfo[5];
-
-		if (checkUsername.equals(getUsername()) && checkPassword.equals(getPassword())) {
-			String balance = lineInfo[13];
-			return Double.parseDouble(balance);
-		}
-		return null;
 	}
 	
 	public void deposit(double depositAmpount) {
 		balance += depositAmpount;
-		if(!isValidBalance()) {
+		if(!isValidBalance(depositAmpount)) {
 			balance -= depositAmpount;
 			throw new IllegalArgumentException("Beløpet kan ikke være negativt!");
 		}
@@ -152,28 +168,27 @@ public class Player extends Hand {
 	
 	public void withdraw(double withdrawAmount) {
 		balance -= withdrawAmount;
-		if(!isValidBalance()) {
+		if(!isValidBalance(withdrawAmount)) {
 			balance += withdrawAmount;
 			throw new IllegalArgumentException("Beløpet overskrider saldoen!");
 		}
 	}
 	
-	private boolean isValidBalance() {
-		if (balance >= 0) {
+	private boolean isValidBalance(double amount) {
+		if (amount >= 0) {
 			return true;
 		} return false;
 	}
-	
+
 	@Override
-	public java.lang.String toString() {
-		return "User{" +
-				"Name='" + getFirstname() + " " + getLastname() + '\'' +
-				", username='" + getUsername() + '\'' +
-				", password='" + getPassword() + '\'' +
-				", email='" + getEmail() + '\'' +
-				", birthday='" + getBirthday() + '\'' +
-				", gender='" + getGender() + '\'' +
-				", balance='" + getBalance() + '\'' +
-				'}';
+	public String toString() {
+		return getFirstname() + ',' + 
+		       getLastname() + ',' + 
+			   getUsername() + ',' + 
+			   getPassword() + ',' + 
+			   getEmail() + ',' + 
+			   getBirthday() + ',' + 
+			   getGender() + ',' + 
+			   getBalance();
 	}
 }

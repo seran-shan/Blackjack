@@ -20,22 +20,4 @@ public class BlackjackApp extends Application {
 	public static void main(String[] args) {
 	launch(BlackjackApp.class, args);
 	}
-
-	// private Parent rootNode;
-
-	// public static void main(final String[] args) {
-	// 	Application.launch(args);
-	// }
-
-	// @Override
-	// public void init() throws Exception {
-	// 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StartPage.fxml"));
-	// 	rootNode = fxmlLoader.load();
-	// }
-
-	// @Override
-	// public void start(Stage stage) throws Exception {
-	// 	stage.setScene(new Scene(rootNode));
-	// 	stage.show();
-	// }
 }

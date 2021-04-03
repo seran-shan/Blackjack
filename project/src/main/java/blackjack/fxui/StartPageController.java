@@ -11,14 +11,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class MainController {
+public class StartPageController {
 	
 	@FXML private Button loginRegButton;
 	
 	@FXML
 	public void loginRegButtonOnAction(ActionEvent event) throws IOException {
 		
-		Parent menuParent = FXMLLoader.load(getClass().getResource("StartPage.fxml"));
+		Parent menuParent = FXMLLoader.load(getClass().getResource("LogRegPage.fxml"));
 		Scene menuScene = new Scene(menuParent);
 		
 		Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());

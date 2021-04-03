@@ -13,41 +13,53 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackjack.fxui.LogRegPageController">
    <children>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #black;" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #F0F0F0;" HBox.hgrow="ALWAYS">
          <HBox.margin>
             <Insets right="3.0" />
          </HBox.margin>
          <children>
             <Label prefHeight="35.0" prefWidth="225.0" text="BLACK JACK">
                <VBox.margin>
-                  <Insets left="-20.0" top="-70.0" />
+                  <Insets left="-20.0" top="-45.0" />
                </VBox.margin>
                <font>
                   <Font size="36.0" />
                </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </Label>
             <TextField fx:id="usernameLoginField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Brukernavn" style="-fx-background-color: white; -fx-background-radius: 0px;">
                <VBox.margin>
                   <Insets top="65.0" />
                </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </TextField>
             <PasswordField fx:id="passwordLoginField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Passord" style="-fx-background-color: white; -fx-border-radius: 0px;">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </PasswordField>
-            <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefWidth="200.0" style="-fx-background-color: #black #black;">
+            <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefWidth="200.0" style="-fx-background-color: #F0F0F0 #F0F0F0;">
                <padding>
                   <Insets top="10.0" />
                </padding>
                <children>
-                  <Button fx:id="loginButton" layoutX="116.0" layoutY="15.0" mnemonicParsing="false" onAction="#loginButtonOnAction" style="-fx-background-radius: 0px;" text="Log inn" textAlignment="CENTER" />
+                  <Button fx:id="loginButton" layoutX="116.0" layoutY="15.0" mnemonicParsing="false" onAction="#loginButtonOnAction" style="-fx-background-radius: 0px;" text="Log inn" textAlignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></Button>
                </children>
             </HBox>
-            <Label fx:id="errorMessageLabel" alignment="CENTER" layoutY="100.0" prefHeight="50.0" prefWidth="269.0" textFill="#d72222" translateY="80.0" />
+            <Label fx:id="errorMessageLabel" alignment="CENTER" layoutY="100.0" prefHeight="89.0" prefWidth="269.0" textFill="#d72222" translateY="80.0" />
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #black;" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #F0F0F0;" HBox.hgrow="ALWAYS">
          <HBox.margin>
             <Insets left="3.0" />
          </HBox.margin>
@@ -92,7 +104,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </TextField>
-            <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefWidth="200.0" style="-fx-background-color: #black #black;">
+            <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefWidth="200.0" style="-fx-background-color: #F0F0F0 #F0F0F0;">
                <children>
                   <Button fx:id="regButton" layoutX="116.0" layoutY="15.0" mnemonicParsing="false" onAction="#regButtonOnAction" style="-fx-background-radius: 0px;" text="Opprett konto" textAlignment="CENTER" />
                </children>

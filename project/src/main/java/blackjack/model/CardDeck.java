@@ -14,6 +14,7 @@ public class CardDeck {
 	public CardDeck() {
 		this.cards = new ArrayList<>();
 		createFullDeck();
+		shuffleDeck();
 	}
 
 	/**
@@ -54,7 +55,7 @@ public class CardDeck {
 	/**
 	 * Sjekker om kortstokken inneholder 52 kort.
 	 */
-	private void checkFullDeck() {
+	void checkFullDeck() {
 		if (cards.size() != NUM_OF_CARDS) {
 			throw new IllegalArgumentException("Kortstokken inneholder ikke 52 kort");
 		}

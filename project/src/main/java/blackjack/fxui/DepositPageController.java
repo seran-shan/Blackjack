@@ -2,7 +2,8 @@ package blackjack.fxui;
 
 import java.io.IOException;
 
-import blackjack.model.BlackJackMain;
+import blackjack.model.BlackJack;
+import blackjack.model.FileSupport;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,15 +17,34 @@ import javafx.stage.Stage;
 
 public class DepositPageController{
 	
-	private BlackJackMain blackJackMain;
+	private BlackJack blackJack;
+	private FileSupport fileSupport = new FileSupport();
 	
 	@FXML private TextField depositAmountTextField;
 	@FXML private Text errorMessageLabel;
-	@FXML private Button confirmButton;
+	@FXML private Button backButton, confirmButton;
 	
 	
-	public void setBlackJackMain(BlackJackMain blackJackMain) {
-		this.blackJackMain = blackJackMain;
+	public void setBlackJack(BlackJack blackJack) {
+		this.blackJack = blackJack;
+	}
+	
+	@FXML
+	public void backButtonOnAction(ActionEvent event) throws IOException {
+		blackJack.resetGame();
+		fileSupport.saveNewBalance(blackJack.getPlayer().toString(),
+								   blackJack.getPlayer().getUsername());
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPage.fxml"));
+		Parent root = (Parent) loader.load();
+
+		MenuPageController menuPageController = loader.getController();
+		menuPageController.setBlackJack(blackJack);
+
+		Scene menuScene = new Scene(root);
+		Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
+		window.setScene(menuScene);
+		window.show();
 	}
 	
 	@FXML
@@ -32,13 +52,13 @@ public class DepositPageController{
 		double depositAmount = Double.parseDouble(depositAmountTextField.getText());
 
 		if (depositAmount > 0) {
-			blackJackMain.getPlayer().deposit(depositAmount);
+			blackJack.getPlayer().deposit(depositAmount);
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPage.fxml"));
 			Parent root = (Parent) loader.load();
 
 			MenuPageController menuPageController = loader.getController();
-			menuPageController.setBlackJackMain(blackJackMain);
+			menuPageController.setBlackJack(blackJack);
 
 			Scene menuScene = new Scene(root);
 			Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
@@ -51,11 +71,5 @@ public class DepositPageController{
 		else {
 			errorMessageLabel.setText("Feil!");
 		}
-		// Parent menuParent = FXMLLoader.load(getClass().getResource("MenuPage.fxml"));
-		// Scene menuScene = new Scene(menuParent);
-		
-		// Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());
-		// window.setScene(menuScene);
-		// window.show();
 	}
 }

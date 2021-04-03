@@ -39,46 +39,54 @@ public class Hand {
     public void addCardToHand(Card card) {
         getHand().add(card);
     }
+    
+    public CardDeck getDeck() {
+		return deck;
+	}
 
     /**
      * Setter verdien av hvert trukket kort.
      * @return verdien på kortet som er trukket
      */
 	public int getHandValue(){
-        checkEmptyHand();
 		int handValue = 0;
-        for (Card card : getHand()) {
-            switch(card.getFace()){
-                case TWO -> handValue += 2; 
-                case THREE -> handValue += 3;  
-                case FOUR -> handValue += 4;  
-                case FIVE -> handValue += 5;  
-                case SIX -> handValue += 6;  
-                case SEVEN -> handValue += 7;
-                case EIGHT -> handValue += 8;
-                case NINE -> handValue += 9; 
-                case TEN -> handValue += 10;  
-                case JACK -> handValue += 10; 
-                case QUEEN -> handValue += 10;
-                case KING -> handValue += 10; 
-                case ACE -> {
-                            if (handValue < 10)
-                                handValue += 11;
-                            else
-                                handValue += 1;
-                            }
-                default -> System.err.println("Ugyldig verdi");
-            }			
+        if (hasEmptyHand()) {
+			return handValue;
+		}
+        else {
+	        for (Card card : getHand()) {
+	            switch(card.getFace()){
+	                case TWO -> handValue += 2; 
+	                case THREE -> handValue += 3;  
+	                case FOUR -> handValue += 4;  
+	                case FIVE -> handValue += 5;  
+	                case SIX -> handValue += 6;  
+	                case SEVEN -> handValue += 7;
+	                case EIGHT -> handValue += 8;
+	                case NINE -> handValue += 9; 
+	                case TEN -> handValue += 10;  
+	                case JACK -> handValue += 10; 
+	                case QUEEN -> handValue += 10;
+	                case KING -> handValue += 10; 
+	                case ACE -> {
+	                            if (handValue <= 10)
+	                                handValue += 11;
+	                            else
+	                                handValue += 1;
+	                            }
+	                default -> System.err.println("Ugyldig verdi");
+	            }			
+	        }
+	        return handValue;
         }
-        return handValue;
 	}
 
-    public void moveCardBack() {
-        checkEmptyHand();
-        Card cardToMoveBack = getHand().get(INDEX_OF_FIRST_CARD);
-        checkDuplicate(cardToMoveBack);
-        deck.getCards().add(cardToMoveBack);
-
+    public void moveCardsBack() {
+        //checkEmptyHand();
+        for (Card card : hand) {
+        	getDeck().getCards().add(card);
+        } 
+        hand = new ArrayList<>();
     }
 
     /**
@@ -88,6 +96,13 @@ public class Hand {
         if (getHand().isEmpty()) {
             throw new IllegalStateException("Ingen kort tildelt");
         }
+    }
+    
+    private boolean hasEmptyHand() {
+        if (getHand().isEmpty()) {
+            return true;
+        }
+		return false;
     }
 
     /**
