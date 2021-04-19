@@ -1,4 +1,4 @@
-Shanmugathas,seran26,seran26,Ps03032608!,seran@live.no,2001-08-26,Mann,4400.0
+Shanmugathas,seran26,seran26,Ps03032608,seran@live.no,2001-08-26,Mann,4600.0
 Sander,Olsen,sander33,Ps03032608,sander@gmail.com,2001-03-29,Mann,20000.0
 Janartan,Packiyanathan,CoachJ,Lorenskog123,17janartan@gmail.com,2002-08-17,Mann,50.0
 Tharun,Satheeskumar,tharun17,Hei123,heur@gmail.com,2002-08-27,Mann,1000000.0
