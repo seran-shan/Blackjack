@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 public class GamePageController{
 
-	private BlackJack blackJack = new BlackJack();
+	private BlackJack blackJack = new BlackJack("username", "Password1");
 	private FileSupport fileSupport = new FileSupport();
 	
 	@FXML private Button startButton, bet20Button, bet100Button, bet200Button,
@@ -221,7 +221,6 @@ public class GamePageController{
 			playerWins();
 		}
 		
-		
 		newGameButton.setDisable(false);
 	}
 	
@@ -253,6 +252,9 @@ public class GamePageController{
 	public void playerWins() {
 		if (blackJack.hasBlackJack()) {
 			endText.setText("BLACKJACK");
+		}
+		else if (blackJack.isBustDealer()) {
+			endText.setText("DU VANT");
 		}
 		else if (!blackJack.isBust() && blackJack.isBustDealer()) {
 			endText.setText("DU VANT");
