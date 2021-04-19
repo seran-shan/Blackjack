@@ -1,4 +1,4 @@
-package blackjack;
+package blackjack.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,12 +7,14 @@ public class CardDeck {
 	private ArrayList<Card> cards;
 	private final int NUM_OF_CARDS = 52; //For å kontrollere at kortstokken inneholder 52 kort.
 	
+	
 	/**
 	 * Opprettes en hel kortstokk når et instans av klassen CardDeck opprettes.
 	 */
 	public CardDeck() {
 		this.cards = new ArrayList<>();
 		createFullDeck();
+		shuffleDeck();
 	}
 
 	/**
@@ -46,13 +48,14 @@ public class CardDeck {
 			}
  		}
 		checkFullDeck();
+		//sjekk om kortet ekistirerer fra før
 	}
 
 	
 	/**
 	 * Sjekker om kortstokken inneholder 52 kort.
 	 */
-	private void checkFullDeck() {
+	void checkFullDeck() {
 		if (cards.size() != NUM_OF_CARDS) {
 			throw new IllegalArgumentException("Kortstokken inneholder ikke 52 kort");
 		}
