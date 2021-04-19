@@ -88,7 +88,7 @@ public class UserValidation {
 	}
 	
 	public boolean validateBalance(String balance) {;
-		return balance.matches("[0-9]{1,}");
+		return balance.matches("[0-9.]{1,}");
 	}
 
 	public boolean checkIfUserExist(String username, String password) throws FileNotFoundException {
@@ -104,7 +104,7 @@ public class UserValidation {
 			if (checkUsername.equalsIgnoreCase(username) && checkPassword.equals(password)) {
 				scanner.close();
 				return true;
-		}
+			}
 		}
 		scanner.close();
 	

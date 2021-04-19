@@ -1,10 +1,12 @@
-Shanmugathas,seran26,seran26,Ps03032608,seran@live.no,2001-08-26,Mann,4600.0
+FirstName,LastName,username,Password1,player1@mail.com,1970-01-01,Udefinert,0.0
+Seran,Shanmugathas,seran26,Ps03032608,seran@live.no,2001-08-26,Mann,4000.0
 Sander,Olsen,sander33,Ps03032608,sander@gmail.com,2001-03-29,Mann,20000.0
 Janartan,Packiyanathan,CoachJ,Lorenskog123,17janartan@gmail.com,2002-08-17,Mann,50.0
 Tharun,Satheeskumar,tharun17,Hei123,heur@gmail.com,2002-08-27,Mann,1000000.0
 Asai,shan,shan,Test123,shan@test.no,1970-04-16,Mann,4680.0
-Pravin,Thevakan,prave,Pra03030,pravin20111@hotmail.com,2001-03-03,Mann,200.0
+Thevakan,prave,prave,Pra03030,pravin20111@hotmail.com,2001-03-03,Mann,200.0
 Dinesh,Chandranithi,Dinesh,Dinesh2000,dineshchandranithi@gmail.com,2000-03-19,Mann,100.0
 Francin,Vincent,francinvincent,Ento12,francin@gmail.com,1998-05-29,Mann,200.0
-Test12,Test12,Test12,Test123,test@test.no,1999-04-23,Mann,1000.0
-Vegard,Hansen,veggie22,DumToer123,chayzz.s@gmail.com,2000-04-29,Mann,2000.0
+null,null,test12,Test123,null,null,null,0.0
+sindre,engoy,sindreng1,1234aA,sindre.e@live.com,1988-03-04,Mann,100400.0
+Elamurugan,Geerthi,Geerthi,Hei00,navn@gmail.com,2000-04-12,Mann,700.0
