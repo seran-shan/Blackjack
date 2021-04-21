@@ -220,6 +220,9 @@ public class GamePageController{
 		else if (blackJack.hasBlackJack() && !blackJack.hasBlackJackDealer()) {
 			playerWins();
 		}
+		else if (blackJack.dealerWins()) {
+			bust();
+		}
 		
 		newGameButton.setDisable(false);
 	}

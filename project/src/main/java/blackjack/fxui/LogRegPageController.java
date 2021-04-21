@@ -3,8 +3,6 @@ package blackjack.fxui;
 import java.io.IOException;
 
 import blackjack.model.BlackJack;
-import blackjack.model.FileSupport;
-import blackjack.model.UserValidation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -66,6 +64,8 @@ public class LogRegPageController {
 		
 				MenuPageController menuPageController = loader.getController();
 				menuPageController.setBlackJack(blackJack);
+				menuPageController.getWelcomeLabel().setText("Velkommen tilbake " + blackJack.getPlayer().getFirstname() + " " +
+																					blackJack.getPlayer().getLastname());
 		
 				Scene menuScene = new Scene(root);
 				Stage window = (Stage) (((Node) event.getSource()).getScene().getWindow());

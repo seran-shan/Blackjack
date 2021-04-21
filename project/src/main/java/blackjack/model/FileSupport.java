@@ -9,10 +9,8 @@ import java.util.Scanner;
 
 public class FileSupport implements IFileReading {
 	
-	//public final String USER_INFO_PATH = "src/main/resources/blackjack/fxui/userinfo/BlackJackUsers.txt";
-	
-	protected static final String USER_INFO_PATH = System.getProperty("user.home") + "/BlackJackUsers.txt";
-		
+	private final static String FILE_NAME = "BlackJackUsers.txt";
+	protected static final String USER_INFO_PATH = System.getProperty("user.home") + "/Downloads/" + FILE_NAME;
 	
 	public void writeToFile(String lineToWrite) {
 		try {

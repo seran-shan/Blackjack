@@ -2,6 +2,11 @@ package blackjack.model;
 
 import java.util.ArrayList;
 
+/**
+ * Parent klasse for player og dealer
+ * @author seranshanmugathas og pravinthevakan
+ *
+ */
 public class Hand {
     private CardDeck deck;
     private final int INDEX_OF_FIRST_CARD = 0;
@@ -9,15 +14,20 @@ public class Hand {
     protected final int BLACK_JACK = 21;
 
     /**
+     * konstruktør som oppretter et objekt av hand
+     * her initieres et objektvariablene deklarert over
      * @param deck
      */
     public Hand(CardDeck deck) {
+    	if (deck == null) {
+			throw new IllegalArgumentException("Må inneholde kortstokk");
+		}
         this.deck = deck;
         hand = new ArrayList<>();
     }
 
     /**
-     * Metode får trekke et kort fra kortstokken.
+     * Metode for trekke et kort fra kortstokken.
      */
     public Card drawCard() {
         Card drawnCard = deck.getCard(INDEX_OF_FIRST_CARD);
@@ -26,7 +36,7 @@ public class Hand {
     }
 
     /**
-     * 
+     * Tilgangssmetode for å hente kortene til spilleren/dealeren
      * @return selve hånda spillerene og dealeren får
      */
     public ArrayList<Card> getHand() {
@@ -81,6 +91,9 @@ public class Hand {
         }
 	}
 
+	/**
+	 * Flytter kortene fra hånda tilbake til bunken.
+	 */
     public void moveCardsBack() {
         //checkEmptyHand();
         for (Card card : hand) {
@@ -107,6 +120,7 @@ public class Hand {
 
     /**
     * Sjekker duplikat
+    * @param newCard
     */
 	private void checkDuplicate(Card newCard) {
 		for (Card card : deck.getCards()) {
@@ -116,6 +130,11 @@ public class Hand {
 		}
 	}
 	
+	/**
+	 * Sjekker om man har Blackjack eller ikke
+	 * @return True hvis man har 21 poeng, eller false dersom man har 
+	 * over/under 21 poeng
+	 */
 	protected boolean isBlackJack() {
 		return getHandValue() == BLACK_JACK;
 	}
