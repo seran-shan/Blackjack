@@ -1,5 +1,10 @@
 package blackjack.model;
 
+/**
+ * Enumet inneholder konstanter for de ulike verdiene et kort kan ha
+ * @author seranshanmugathas og pravinthevakan
+ *
+ */
 public enum Face {
 	
 	TWO, 

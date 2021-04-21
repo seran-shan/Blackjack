@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class MenuPageController {
@@ -23,6 +24,7 @@ public class MenuPageController {
 	}
 	
 	@FXML private Button gameButton, depositButton, withdrawButton, exitButton;
+	@FXML private Label welcomeLabel;
 
 	/**
 	 * Skal bytte scene til menyen
@@ -93,5 +95,9 @@ public class MenuPageController {
 								   blackJack.getPlayer().getUsername());
 		Stage window = (Stage) exitButton.getScene().getWindow();
 		window.close();
+	}
+	
+	public Label getWelcomeLabel() {
+		return welcomeLabel;
 	}
 }

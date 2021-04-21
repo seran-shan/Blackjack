@@ -1,22 +1,41 @@
 package blackjack.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
+/**
+ * Klasse som inneholder sjekk av forksjellige variabler i programmet
+ * @author seranshanmugathas og pravinthevakan
+ *
+ */
 public class UserValidation {
 
+	/**
+	 * Sjekker om fornavnet er gyldig
+	 * @param firstName
+	 * @return fornavn dersom det er gyldig 
+	 */
 	public boolean validateFirstName(String firstName) {
 		return firstName.matches("^([a-åA-Å]{2,})$");
 	}
 	
+	/**
+	 * sjekker om etternavnet er gyldig
+	 * @param lastName
+	 * @return etternavn dersom det er gyldig
+	 */
 	public boolean validateLastName(String lastName) {
 		return lastName.matches("^([a-åA-Å]{2,})$");
 	}
 	
+	/**
+	 * sjekker om E mailen er gyldig
+	 * må inneholde riktig landskode
+	 * må inneholde riktige bokstaver og tegn
+	 * @param emailToValidate
+	 * @return true hvis den er gyldig, false hvis den ikke er gyldig
+	 */
 	public boolean validateMail(String emailToValidate) {
 		String[] countryCodes = {"ad", "ae", "af", "ag", "ai", "al", "am", "ao", "aq", "ar", "as", "at", 
 								 "au", "aw", "ax", "az", "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", 
@@ -55,6 +74,12 @@ public class UserValidation {
 		return false;
 	}
 	
+	/**
+	 * sjekker om fødselsdatoen er gylig
+	 * må være minst 18 år
+	 * @param birthday
+	 * @return true dersom den er gyldig, false hvis ikke
+	 */
 	public boolean validateBirthday(LocalDate birthday) {
 		LocalDate eighteenYears = LocalDate.now();
 		eighteenYears.minusYears(18);
@@ -65,6 +90,12 @@ public class UserValidation {
 		return false;
 	}
 	
+	/**
+	 * sjekker om vi har gyldig kjønn
+	 * kan ikke være ubesvart
+	 * @param gender
+	 * @return true hvis den er gyldig, false hvis ikke
+	 */
 	public boolean validateGender(String gender) {
 		List<String> genderString = Arrays.asList("Mann", "Dame", "Udefinert");
 		if (genderString.contains(gender)) {
@@ -73,6 +104,12 @@ public class UserValidation {
 		return false;
 	}
 	
+	/**
+	 * sjekker om brukernavnet er gyldig 
+	 * må bestå av rette tegn bokstaver og tall
+	 * @param username
+	 * @return true hvis den er gyldig, false hvis ikke 
+	 */
 	public boolean validateUsername(String username) {
 		if (username.matches("^([a-zA-Z0-9]{3,})$")) {
 			return true;
@@ -80,6 +117,12 @@ public class UserValidation {
 		return false;
 	}
 	
+	/**
+	 * sjekker om passordet er gyldig
+	 * må bestå av rette tegm, bokstaver og tall
+	 * @param password
+	 * @return true hvis den er gyldig, false hvis ikke
+	 */
 	public boolean validatePassword(String password) {
 		if (password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{3,}$")) {
 			return true;
@@ -87,27 +130,12 @@ public class UserValidation {
 		return false;
 	}
 	
+	/**
+	 * sjekke rom saldoen er gyldig
+	 * @param balance
+	 * @return den gyldige saldoen
+	 */
 	public boolean validateBalance(String balance) {;
 		return balance.matches("[0-9.]{1,}");
-	}
-
-	public boolean checkIfUserExist(String username, String password) throws FileNotFoundException {
-		String userInfoPath = "src/main/resources/blackjack/fxui/userinfo/BlackJackUsers.txt";
-		Scanner scanner = new Scanner(new File(userInfoPath));
-		String[] lineInfo = null;
-		while(scanner.hasNextLine()) {
-			String line = scanner.nextLine();
-			lineInfo = line.split(",");
-			String checkUsername = lineInfo[2];
-			String checkPassword = lineInfo[3];
-
-			if (checkUsername.equalsIgnoreCase(username) && checkPassword.equals(password)) {
-				scanner.close();
-				return true;
-			}
-		}
-		scanner.close();
-	
-		return false;
 	}
 }

@@ -3,6 +3,11 @@ package blackjack.model;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Klasse for å å håndtere en kortstokk
+ * @author seranshanmugathas og pravinthevakan
+ *
+ */
 public class CardDeck {
 	private ArrayList<Card> cards;
 	private final int NUM_OF_CARDS = 52; //For å kontrollere at kortstokken inneholder 52 kort.
@@ -18,13 +23,18 @@ public class CardDeck {
 	}
 
 	/**
-	 * Get-metode
+	 * Tilgangsmetode for å hente alle kortene 
 	 * @return liste av alle kortene i bunken
 	 */
 	public ArrayList<Card> getCards() {
         return cards;
     }
 
+	/**
+	 * Tilgangsmetode for å hente et spesifikt kort fra kortstokken
+	 * @param indexOfCard
+	 * @return
+	 */
 	public Card getCard(int indexOfCard) {
 		return getCards().get(indexOfCard);
 	}

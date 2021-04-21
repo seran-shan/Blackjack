@@ -8,13 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 
-import org.junit.jupiter.api.AfterAll;
+//import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 public class BlackJackTest {
 	
 	private BlackJack blackjack;
-	private FileSupport fileSupport = new FileSupport();
 	
 	@Test
 	public void testRegConstructor() {
@@ -92,17 +91,37 @@ public class BlackJackTest {
 	
 	@Test
 	public void testGame() {
-		blackjack = new BlackJack("Test12", "Test123");
+		blackjack = new BlackJack("JUnit5", "JUnit5");
 		
 		assertTrue(blackjack.drawCard() instanceof Card);
 		
 		blackjack.drawCardDealer();
-		assertNotNull(blackjack.getDealerHandValue());
+		assertNotNull(blackjack.getDealerHandValue(), "Hånda skal inneholde et kort");
 		
 		blackjack.resetGame();
-		assertEquals(blackjack.getPlayerHandValue(), 0);
-		assertEquals(blackjack.getDealerHandValue(), 0);
+		assertEquals(blackjack.getPlayerHandValue(), 0, "Håndverdien skal være 0");
+		assertEquals(blackjack.getDealerHandValue(), 0, "Håndverdien skal være 0");
+		
+		//Test av seiers og tap sjekk - player.
+		blackjack.getPlayer().getHand().add(new Card(Suit.HEARTS, Face.ACE));
+		blackjack.getPlayer().getHand().add(new Card(Suit.HEARTS, Face.TEN));
+		assertTrue(blackjack.hasBlackJack(), "Spillers hånd skal ha verdien 21");
+		
+		//Test av seiers og tap sjekk - dealer.
+		blackjack.getDealer().getHand().add(new Card(Suit.CLUBS, Face.ACE));
+		blackjack.getDealer().getHand().add(new Card(Suit.CLUBS, Face.TEN));
+		assertTrue(blackjack.hasBlackJackDealer(), "Dealers hånd skal ha verdien 21");
+		
+		//Test av uangjort
+		assertTrue(blackjack.isTie(), "Spiller og dealer skal ha lik håndverdi");
+		
+		blackjack.getPlayer().getHand().add(new Card(Suit.SPADES, Face.ACE));
+		assertTrue(blackjack.isBust(), "Spiller skal ha tapt");
+		
+		blackjack.getDealer().getHand().add(new Card(Suit.DIAMONDS, Face.ACE));
+		assertTrue(blackjack.isBustDealer(), "Dealer skal ha tapt");
 	}
+
 	
 //	@AfterAll
 //	public void removeTestUser() {
