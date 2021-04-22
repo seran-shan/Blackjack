@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 
 //import org.junit.jupiter.api.AfterAll;
@@ -74,7 +75,7 @@ public class BlackJackTest {
 	}
 	
 	@Test
-	public void testPlayerAccount() {
+	public void testPlayerAccount() throws FileNotFoundException {
 		blackjack = new BlackJack("JUnit5", "JUnit5");
 		
 		assertThrows(IllegalArgumentException.class, () -> {
@@ -90,7 +91,7 @@ public class BlackJackTest {
 	}
 	
 	@Test
-	public void testGame() {
+	public void testGame() throws FileNotFoundException {
 		blackjack = new BlackJack("JUnit5", "JUnit5");
 		
 		assertTrue(blackjack.drawCard() instanceof Card);

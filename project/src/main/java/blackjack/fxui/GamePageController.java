@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 public class GamePageController{
 
-	private BlackJack blackJack = new BlackJack("username", "Password1");
+	private BlackJack blackJack = new BlackJack();
 	private FileSupport fileSupport = new FileSupport();
 	
 	@FXML private Button startButton, bet20Button, bet100Button, bet200Button,

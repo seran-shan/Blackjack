@@ -49,8 +49,9 @@ public class Player extends Hand {
 	 * @param username
 	 * @param password
 	 * @param deck
+	 * @throws FileNotFoundException
 	 */
-	public Player(String username, String password, CardDeck deck) {
+	public Player(String username, String password, CardDeck deck) throws FileNotFoundException {
 		super(deck);
 		if (!userValidation.validateUsername(username)) {
 			throw new IllegalArgumentException("Brukernavnet må bestå av bokstaver og tall");
@@ -63,17 +64,11 @@ public class Player extends Hand {
 		} else {
 			this.password = password;
 		}
-		try {
-			if (fileSupport.checkIfUserExist(username, password)) {
-				setExisistingPlayerInfo();
-			} else {
-				throw new IllegalStateException("Prøv igjen!");
-			}
-		} catch (FileNotFoundException e) {
-			System.out.println("Fant ikke filen");
-			e.printStackTrace();
+		if (fileSupport.checkIfUserExist(username, password)) {
+			setExisistingPlayerInfo();
+		} else {
+			throw new IllegalStateException("Prøv igjen!");
 		}
-		
 	}
 
 	/**

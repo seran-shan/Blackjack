@@ -25,7 +25,10 @@ public class FileSupport implements IFileReading {
 	}
 	
 	public boolean checkIfUserExist(String username, String password) throws FileNotFoundException {
-		Scanner scanner = new Scanner(new File(USER_INFO_PATH));
+		File file = new File(USER_INFO_PATH);
+		checkExistingFile(file);
+		
+		Scanner scanner = new Scanner(file);
 		String[] lineInfo = null;
 		while(scanner.hasNextLine()) {
 			String line = scanner.nextLine();
@@ -84,5 +87,21 @@ public class FileSupport implements IFileReading {
 	  	} catch (IOException io) {
 		  io.printStackTrace();
 	  	}
+	}
+
+	public void checkExistingFile(File file) throws FileNotFoundException {
+		String fileName = file.getName();  // for displaying file name as a String
+	
+		if (!(file.exists())) {
+			throw new FileNotFoundException("The file " + fileName + " does not exist.");
+		}
+	
+		if (!(file.isFile())) {
+			throw new FileNotFoundException("The file " + fileName + " is not a normal file.");
+		}
+	
+		if (!(file.canRead())) {
+			throw new FileNotFoundException("The file " + fileName + " is not readable.");
+		}
 	}
 }
