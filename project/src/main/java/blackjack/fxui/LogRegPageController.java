@@ -3,8 +3,6 @@ package blackjack.fxui;
 import java.io.IOException;
 
 import blackjack.model.BlackJack;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +33,6 @@ public class LogRegPageController {
 	@FXML private Label errorMessageLabel;
 
 	public void initialize() {
-		ObservableList<String> valigGender = FXCollections.observableArrayList("Mann", "Dame", "Udefinert");
 		if (genderChoiceBox != null) {
 			genderChoiceBox.getItems().add("Mann");
 			genderChoiceBox.getItems().add("Dame");

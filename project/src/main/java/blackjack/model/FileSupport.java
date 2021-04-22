@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class FileSupport implements IFileReading {
-	
+
 	private final static String FILE_NAME = "BlackJackUsers.txt";
 	protected static final String USER_INFO_PATH = System.getProperty("user.home") + "/Downloads/" + FILE_NAME;
-	
+
 	public void writeToFile(String lineToWrite) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(USER_INFO_PATH, true));
@@ -23,7 +23,7 @@ public class FileSupport implements IFileReading {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean checkIfUserExist(String username, String password) throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(USER_INFO_PATH));
 		String[] lineInfo = null;
@@ -39,10 +39,10 @@ public class FileSupport implements IFileReading {
 			}
 		}
 		scanner.close();
-	
+
 		return false;
 	}
-	
+
 	public String getUserInfo(String username) throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(USER_INFO_PATH));
 		String[] lineInfo = null;
@@ -59,29 +59,49 @@ public class FileSupport implements IFileReading {
 		scanner.close();
 		return null;
 	}
-	
+
 	public void saveNewBalance(String playerInfo, String username) {
 		try {
 			Scanner scanner = new Scanner(new File(USER_INFO_PATH));
 			StringBuffer buffer = new StringBuffer();
- 
+
 			while (scanner.hasNextLine()) {
 				buffer.append(scanner.nextLine() + System.lineSeparator());
-			}	
-     
+			}
+
 			String fileContents = buffer.toString();
 			scanner.close();
-	      
+
 			String oldLine = getUserInfo(username);
 			String newLine = playerInfo;
 			fileContents = fileContents.replaceAll(oldLine, newLine);
-	      
+
 			FileWriter writer = new FileWriter(USER_INFO_PATH);
 			writer.append(fileContents);
 			writer.flush();
-		      
+			writer.close();
+
 	  	} catch (IOException io) {
 		  io.printStackTrace();
 	  	}
+	}
+	// throws FileNotFoundException
+
+	public boolean fileExists(File file)  {
+		String fileName = file.getName();  // for displaying file name as a String
+
+		if (!(file.exists())) {
+			throw new FileNotFoundException("The file " + fileName + " does not exist.");
+		}
+
+		if (!(file.isFile())) {
+			throw new FileNotFoundException("The file " + fileName + " is not a normal file.");
+		}
+
+		if (!(file.canRead())) {
+			throw new FileNotFoundException("The file " + fileName + " is not readable.");
+		}
+
+		return true;
 	}
 }

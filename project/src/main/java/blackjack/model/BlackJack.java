@@ -5,6 +5,8 @@ import java.time.LocalDate;
 /**
  * All logikken fra modelklassen er kombinert i denne klassen.
  * Denne er klassen er den som benyttes i kontrollerene. 
+ * Bruker i all hovedsak delegeringsteknikken i hele klassen.
+ * Dette er gjort for å ha minst mulig logikk i kontrollene.
  * @author seranshanmugathas
  *
  */
