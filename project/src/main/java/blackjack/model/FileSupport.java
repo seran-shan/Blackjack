@@ -9,7 +9,8 @@ import java.util.Scanner;
 
 public class FileSupport implements IFileReading {
 	
-	public final String USER_INFO_PATH = "src/main/resources/blackjack/fxui/userinfo/BlackJackUsers.txt";
+	private final static String FILE_NAME = "BlackJackUsers.txt";
+	protected static final String USER_INFO_PATH = System.getProperty("user.home") + "/Downloads/" + FILE_NAME;
 	
 	public void writeToFile(String lineToWrite) {
 		try {
@@ -24,7 +25,10 @@ public class FileSupport implements IFileReading {
 	}
 	
 	public boolean checkIfUserExist(String username, String password) throws FileNotFoundException {
-		Scanner scanner = new Scanner(new File(USER_INFO_PATH));
+		File file = new File(USER_INFO_PATH);
+		checkExistingFile(file);
+		
+		Scanner scanner = new Scanner(file);
 		String[] lineInfo = null;
 		while(scanner.hasNextLine()) {
 			String line = scanner.nextLine();
@@ -78,9 +82,26 @@ public class FileSupport implements IFileReading {
 			FileWriter writer = new FileWriter(USER_INFO_PATH);
 			writer.append(fileContents);
 			writer.flush();
+			writer.close();
 		      
 	  	} catch (IOException io) {
 		  io.printStackTrace();
 	  	}
+	}
+
+	public void checkExistingFile(File file) throws FileNotFoundException {
+		String fileName = file.getName();  
+	
+		if (!(file.exists())) {
+			throw new FileNotFoundException("Filen \"" + fileName + "\" ekisterer ikke.");
+		}
+	
+		if (!(file.isFile())) {
+			throw new FileNotFoundException("Filen \"" + fileName + "\" er unormal.");
+		}
+	
+		if (!(file.canRead())) {
+			throw new FileNotFoundException("Filen \"" + fileName + "\" er ikke leslig.");
+		}
 	}
 }
