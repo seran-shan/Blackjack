@@ -105,7 +105,8 @@ public class Hand {
     /**
      * Sjekker om spilleren har fått tildelt kort
      */
-    private void checkEmptyHand() {
+    @SuppressWarnings("unused")
+	private void checkEmptyHand() {
         if (getHand().isEmpty()) {
             throw new IllegalStateException("Ingen kort tildelt");
         }
@@ -122,6 +123,7 @@ public class Hand {
     * Sjekker duplikat
     * @param newCard
     */
+	@SuppressWarnings("unused")
 	private void checkDuplicate(Card newCard) {
 		for (Card card : deck.getCards()) {
 			if(card.equals(newCard)) {

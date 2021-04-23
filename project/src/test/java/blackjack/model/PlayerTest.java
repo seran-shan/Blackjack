@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.FileNotFoundException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +15,7 @@ public class PlayerTest {
 	private Player player;
 	
 	@BeforeEach
-	private void setup() {
+	private void setup() throws FileNotFoundException {
 		deck = new CardDeck();
 		player = new Player("Test12", "Test123", deck);
 	}

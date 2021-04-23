@@ -1,10 +1,13 @@
 package blackjack.model;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 
 /**
  * All logikken fra modelklassen er kombinert i denne klassen.
  * Denne er klassen er den som benyttes i kontrollerene. 
+ * Bruker i all hovedsak delegeringsteknikken i hele klassen.
+ * Dette er gjort for å ha minst mulig logikk i kontrollene.
  * @author seranshanmugathas
  *
  */
@@ -22,7 +25,7 @@ public class BlackJack {
 		fileSupport.writeToFile(getPlayer().toString());
     }
     
-    public BlackJack(String username, String password) {
+    public BlackJack(String username, String password) throws FileNotFoundException {
         deck = new CardDeck();
         dealer = new Dealer(deck);
 		player = new Player(username, password, deck);
@@ -82,6 +85,13 @@ public class BlackJack {
     	    getDealer().addCardToHand(drawnCard);
     	}
     }
+
+	public BlackJack() {
+		deck = new CardDeck();
+        dealer = new Dealer(deck);
+        player = new Player(deck, "firstName", "lastName", "username", "Password1", 
+				"email@email.no", LocalDate.of(1970, 1, 1), "Udefinert", 0);
+	}
    
     public Player getPlayer() {
 	    return player;
