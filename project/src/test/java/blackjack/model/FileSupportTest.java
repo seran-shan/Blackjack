@@ -14,8 +14,8 @@ public class FileSupportTest {
 	
 	@Test
 	public void testFilReading() throws FileNotFoundException {
-		String existingUsername = "Test12";
-		String existingPassword = "Test123";
+		String existingUsername = "username";
+		String existingPassword = "Password1";
 		assertTrue(fileSupport.checkIfUserExist(existingUsername, existingPassword));
 		
 		String nonExistingUsername = "Test11";
@@ -25,7 +25,7 @@ public class FileSupportTest {
 	@Test
 	public void testFileWriting() throws FileNotFoundException {
 		CardDeck deck = new CardDeck();
-		Player existingPlayer = new Player("Test12", "Test123", deck);
+		Player existingPlayer = new Player("username", "Password1", deck);
 		double oldBalance = existingPlayer.getBalance();
 		existingPlayer.deposit(200);
 		fileSupport.saveNewBalance(existingPlayer.toString(), 
@@ -41,5 +41,4 @@ public class FileSupportTest {
 					nonExistingUsername);
 		});
 	}
-
 }
